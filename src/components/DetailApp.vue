@@ -66,7 +66,8 @@ export default {
             isLoggedIn: false,
             value: 0,
             search: '',
-            idDestination: this.$route.params.id
+            idDestination: this.$route.params.id,
+            detailDestination: {}
       }
     },
     created() {
@@ -91,11 +92,12 @@ export default {
         this.showDescription = true;
       },
       getDestination() {
-        // this.$http.get(`http://localhost:3000/destinations/${this.idDestination}`)
-        // .then(response => {
-        //     this.destination = response.body
-        // })
-        console.log(this.idDestination, 'idDesti ');
+        this.$http.get('http://localhost:8000/api/Destinasi/' + this.idDestination).then(response => {
+          this.detailDestination = response.body.data;
+        }).catch(error => {
+          console.log(error);
+          throw new Error(error);
+        })
       }
     }
 }
