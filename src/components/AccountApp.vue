@@ -27,9 +27,9 @@
         </div>
         
         <v-list-item-title class="text-h5 mb-1">
-          B. Pamungkas
+          {{dataUser.name}}
         </v-list-item-title>
-        <v-list-item-subtitle>abcdesf@gmail.com</v-list-item-subtitle>
+        <v-list-item-subtitle>{{dataUser.email}}</v-list-item-subtitle>
       </v-list-item-content>
       </div>
   </v-card>
@@ -71,14 +71,22 @@ data() {
         return {
             isLoggedIn: false,
             value: 1,
-            data: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'
+            data: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
+            dataUser: {}
         }
+    },
+    created() {
+      this.getUser()
     },
     components: {
         'header-app': HeaderApp,
         'menu-bar': MenuBar
     },
     methods: {
+        getUser() {
+          const data = localStorage.getItem('user');
+          this.dataUser = JSON.parse(data);
+        },
         logout() {
         const user = localStorage.getItem('user');
         if(user !== null) {
