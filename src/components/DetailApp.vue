@@ -9,7 +9,7 @@
               src="https://media.timeout.com/images/105240189/image.jpg"
             ></v-carousel-item>
           </v-carousel>
-      <v-container style="width: 100%; transform: translateY(-50px)" class="rounded-t-xl white custom-shadow">
+      <v-container style="width: 100%; transform: translateY(-50px); height: 100%" class="rounded-t-xl white custom-shadow">
         <v-row align="center">
           <v-col cols="12">
               <p style="font-size: 24px"><strong>Detail Destination</strong></p>
@@ -27,27 +27,14 @@
 
         <v-row id="desc" v-if="showDescription">
           <v-col cols="12">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, doloremque! Distinctio voluptate ex earum aspernatur expedita ipsa incidunt, error voluptatibus</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, doloremque! Distinctio voluptate ex earum aspernatur expedita ipsa incidunt, error voluptatibus</p>
-
+          <description-destination></description-destination>
           </v-col>
         </v-row>
 
         <v-row id="review" v-if="showReview">
           <v-col cols="12">
-            <div class="d-flex justify-center align-center pb-4">
-              <v-btn
-                depressed
-                color="primary"
-                class="ml-4"
-                @click="addReview"
-              >
-                Add review
-              </v-btn>
-              </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, doloremque! Distinctio voluptate ex earum aspernatur expedita ipsa incidunt, error voluptatibus</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, doloremque! Distinctio voluptate ex earum aspernatur expedita ipsa incidunt, error voluptatibus</p>
-          </v-col>
+            <review-destination></review-destination>
+            </v-col>
         </v-row>
     </v-container>
     </v-main>
@@ -58,6 +45,8 @@
 </template>
 
 <script>
+import DescriptionDestination from './DescriptionDestination.vue'
+import ReviewDestination from './ReviewDestination.vue'
 import HeaderApp from './HeaderApp.vue'
 import MenuBar from './MenuBar.vue'
 
@@ -66,6 +55,8 @@ export default {
     components: {
       'header-app': HeaderApp,
       'menu-bar': MenuBar,
+      'description-destination': DescriptionDestination,
+      'review-destination': ReviewDestination,
     },
     data() {
         return {
