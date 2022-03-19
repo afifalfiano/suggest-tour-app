@@ -68,7 +68,7 @@ export default {
 data() {
         return {
             isLoggedIn: false,
-            value: 0,
+            value: 1,
         }
     },
     components: {

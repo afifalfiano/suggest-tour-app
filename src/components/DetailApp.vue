@@ -33,7 +33,7 @@
 
         <v-row id="review" v-if="showReview">
           <v-col cols="12">
-            <review-destination></review-destination>
+            <review-destination  ></review-destination>
             </v-col>
         </v-row>
     </v-container>
@@ -89,9 +89,6 @@ export default {
       onDescription() {
         this.showReview = false;
         this.showDescription = true;
-      },
-      addReview() {
-
       },
       getDestination() {
         // this.$http.get(`http://localhost:3000/destinations/${this.idDestination}`)
