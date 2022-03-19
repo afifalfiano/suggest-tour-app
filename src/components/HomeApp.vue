@@ -15,8 +15,18 @@
 
     <v-main class="d-xs mx-auto overflow-y-auto elevation-4 pb-4" style="width: 100%">
       <v-container style="width: 100%">
-        <v-row align="center pt-2">
-        <v-col cols="12" class="pt-0"  v-for="data in dataDestination" :key="data.id">
+        <v-row align="center" class="mt-2">
+          <v-col cols="12">
+            <v-text-field
+            outlined
+            v-model="search"
+            label="Find a place"
+            prepend-inner-icon="mdi-search-web"
+          ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row align="center">
+        <v-col cols="12" class="pt-0"  v-for="data in filterDestination" :key="data.id">
           <v-container fluid>
           <v-row align="center">
           <!-- <v-card
@@ -64,6 +74,11 @@
           </v-container>
           <hr class="mt-4">
       </v-col>
+      <v-col v-if="filterDestination.length === 0">
+        <div class="d-flex align-center justify-center">
+          <p>Tempat yang anda cari tidak ada.</p>
+        </div>
+      </v-col>
       </v-row>
     </v-container>
     </v-main>
@@ -98,6 +113,7 @@ export default {
         return {
             isLoggedIn: false,
             value: 0,
+            search: '',
             active: true,
 
             dataDestination: [
@@ -147,6 +163,14 @@ export default {
         }
       }
     },
+    computed: {
+      filterDestination: function() {
+        return this.dataDestination.filter(item => {
+          const regex = new RegExp(this.search, 'i');
+          return item.name.match(regex);
+        })
+      }
+    }
     // mounted: {
     //   checkLogin: function() {
     //     const user = localStorage.getItem('user');
