@@ -8,7 +8,7 @@
       dark
     >
     <div class="d-flex align-center justify-center">
-      <h1 class="display-1 font-weight-bold">Suggest Tour App</h1>
+      <h1 class="font-title font-weight-bold">Suggest Tour App</h1>
     </div>
     </v-app-bar> 
 </template>
@@ -19,6 +19,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .font-title {
+    font-size: 24px;
+  }
 </style>

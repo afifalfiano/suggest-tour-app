@@ -1,6 +1,6 @@
 <template>
     <v-bottom-navigation
-      style="max-width: 600px; background-color: none"
+      style="max-width: 600px; background-color: none; position: fixed; bottom: 0; left: 0; right: 0; "
       class="mx-auto d-flex justify-space-around"
     :value="value"
     color="teal"
