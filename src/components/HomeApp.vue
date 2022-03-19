@@ -141,6 +141,15 @@ export default {
       onDetail(id) {
         this.$router.push('/home/detail/' + id);
       },
+      checkLogin: function() {
+      const user = localStorage.getItem('user');
+      if (user !== null) {
+        this.isLoggedIn = true;
+      } else {
+        this.isLoggedIn = false;
+        this.$router.push('/login');
+      }
+    }
     },
     computed: {
       filterDestination: function() {
@@ -148,19 +157,11 @@ export default {
           const regex = new RegExp(this.search, 'i');
           return item.name.match(regex);
         })
-      }
-    }
-    // mounted: {
-    //   checkLogin: function() {
-    //     const user = localStorage.getItem('user');
-    //     if (user !== null) {
-    //       this.isLoggedIn = true;
-    //     } else {
-    //       this.isLoggedIn = false;
-    //       this.$router.push('/login');
-    //     }
-    //   }
-    // },
+      },
+    },
+    created() {
+        this.checkLogin()
+    },
 }
 </script>
 

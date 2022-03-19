@@ -6,11 +6,11 @@
     color="teal"
     grow
   >
-    <v-btn class="fill-height">
+    <v-btn class="fill-height" @click="onHome">
       <v-icon>mdi-home</v-icon>
     </v-btn>
 
-    <v-btn class="fill-height">
+    <v-btn class="fill-height" @click="onAccount">
       <v-icon>mdi-account</v-icon>
     </v-btn>
 
@@ -31,6 +31,12 @@ export default {
     methods: {
         logout() {
             this.$emit('logout', true);
+        },
+        onHome() {
+          this.$router.push('/home');
+        },
+        onAccount() {
+          this.$router.push('/account');
         }
     },
     }

@@ -28,8 +28,11 @@ export default {
             isLoggedIn: false,
             value: 0,
             search: '',
-
-    }
+            idDestination: this.$route.params.id
+      }
+    },
+    created() {
+      this.getDestination()
     },
     methods: {
         logout() {
@@ -41,6 +44,13 @@ export default {
           this.$router.push('/');
         }
       },
+      getDestination() {
+        // this.$http.get(`http://localhost:3000/destinations/${this.idDestination}`)
+        // .then(response => {
+        //     this.destination = response.body
+        // })
+        console.log(this.idDestination, 'idDesti ');
+      }
     }
 }
 </script>

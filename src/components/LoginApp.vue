@@ -7,6 +7,7 @@
                 <v-form
                     ref="form"
                     v-model="valid"
+                    v-on:submi.prevent="submit"
                     lazy-validation
                 >
 
@@ -35,6 +36,7 @@
                     color="success"
                     class="mr-4"
                     @click="submit"
+                    @keypress="submit"
                     >
                     Log In
                     </v-btn>

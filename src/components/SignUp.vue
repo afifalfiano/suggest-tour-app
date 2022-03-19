@@ -7,6 +7,7 @@
                 <v-form
                     ref="form"
                     v-model="valid"
+                    v-on:submi.prevent="submit"
                     lazy-validation
                 >
                     <v-text-field
@@ -42,6 +43,7 @@
                     color="success"
                     class="mr-4"
                     @click="submit"
+                    @keypress="submit"
                     >
                     Sign Up
                     </v-btn>
