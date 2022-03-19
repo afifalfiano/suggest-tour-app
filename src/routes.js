@@ -2,6 +2,8 @@ import LandingPage from './components/LandingPage.vue';
 import LoginApp from './components/LoginApp.vue';
 import SignUp from './components/SignUp.vue';
 import HomeApp from './components/HomeApp.vue';
+import DetailApp from './components/DetailApp.vue';
+
 export default [
     {
         path: '/',
@@ -18,5 +20,9 @@ export default [
     {
         path: '/home',
         component: HomeApp,
+    },
+    {
+        path: '/home/detail/:id',
+        component: DetailApp,
     },
 ]

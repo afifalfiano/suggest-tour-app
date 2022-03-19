@@ -1,17 +1,6 @@
 <template>
     <v-app class="d-xs" >
-     <v-app-bar
-      app
-      class="mx-auto"
-      color="teal"
-      max-width="600"
-      justify="center"
-      dark
-    >
-    <div class="d-flex align-center justify-center">
-      <h1 class="display-1 font-weight-bold">Suggest Tour App</h1>
-    </div>
-    </v-app-bar>
+      <header-app />
 
     <v-main class="d-xs mx-auto overflow-y-auto elevation-4 pb-4" style="width: 100%">
       <v-container style="width: 100%">
@@ -29,9 +18,6 @@
         <v-col cols="12" class="pt-0"  v-for="data in filterDestination" :key="data.id">
           <v-container fluid>
           <v-row align="center">
-          <!-- <v-card
-            elevation="2"
-          > -->
             <v-col cols="4" class="pr-0">
                   <v-img
                     aspect-ratio="1"
@@ -65,11 +51,11 @@
                 depressed
                 color="primary"
                 class="ml-4"
+                @click="onDetail(data.id)"
               >
                 Detail
               </v-btn>
             </v-col>
-            <!-- </v-card> -->
           </v-row>
           </v-container>
           <hr class="mt-4">
@@ -83,38 +69,28 @@
     </v-container>
     </v-main>
 
-      <v-bottom-navigation
-      style="max-width: 600px; background-color: none"
-      class="mx-auto d-flex justify-space-around"
-    :value="value"
-    color="teal"
-    grow
-  >
-    <v-btn class="fill-height">
-      <v-icon>mdi-home</v-icon>
-    </v-btn>
+    <menu-bar @logout="logout" :value="value"/>
 
-    <v-btn class="fill-height">
-      <v-icon>mdi-account</v-icon>
-    </v-btn>
-
-    <v-btn class="fill-height" @click="logout">
-      <v-icon>mdi-logout</v-icon>
-    </v-btn>
-  </v-bottom-navigation>
   </v-app>
 </template>
 
 
 <script>
+
+import HeaderApp from './HeaderApp.vue'
+import MenuBar from './MenuBar.vue'
+
 export default {
     name: 'HomeApp',
+    components: {
+      'header-app': HeaderApp,
+      'menu-bar': MenuBar,
+    },
     data() {
         return {
             isLoggedIn: false,
             value: 0,
             search: '',
-            active: true,
 
             dataDestination: [
               {
@@ -161,7 +137,10 @@ export default {
         } else {
           this.$router.push('/');
         }
-      }
+      },
+      onDetail(id) {
+        this.$router.push('/home/detail/' + id);
+      },
     },
     computed: {
       filterDestination: function() {
