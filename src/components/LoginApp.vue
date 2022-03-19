@@ -3,19 +3,12 @@
         <v-row align="center">
             <v-col cols="12" align-self="center" class="d-flex-row align-center justify-center">
                 <div class="py-20 px-10">
-                <h1 class="text-center">Sign Up</h1>
+                <h1 class="text-center">Log In</h1>
                 <v-form
                     ref="form"
                     v-model="valid"
                     lazy-validation
                 >
-                    <v-text-field
-                    v-model="name"
-                    :counter="10"
-                    :rules="nameRules"
-                    label="Name"
-                    required
-                    ></v-text-field>
 
                     <v-text-field
                     v-model="email"
@@ -43,7 +36,7 @@
                     class="mr-4"
                     @click="submit"
                     >
-                    Sign Up
+                    Log In
                     </v-btn>
                     <v-btn
                     color="warning"
@@ -55,6 +48,7 @@
                     </div>
                 </v-form>
                 </div>
+                
             </v-col>
         </v-row>
     </v-container>    
@@ -62,35 +56,40 @@
 
 <script>
 export default {
-    name: 'SignUp',
-    data: () => ({
-      valid: true,
-      showPassword: false,
-      name: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 10) || 'Name must be less than 10 characters',
-      ],
-      email: '',
-      emailRules: [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      password: '',
-      passwordRules: [
-        v => !!v || 'Password is required',
-        v => v.length >= 8 || 'Min 8 characters'
-      ],
-    }),
-    methods: {
-      submit () {
-        this.$refs.form.validate()
-      },
-      back () {
-            this.$router.push('/')
-      },
+    name: 'LoginApp',
+    data() {
+        return {
+            valid: true,
+            showPassword: false,
+            email: '',
+            emailRules: [
+                v => !!v || 'E-mail is required',
+                v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+            ],
+            password: '',
+            passwordRules: [
+                v => !!v || 'Password is required',
+                v => v.length >= 8 || 'Min 8 characters'
+            ],
+        }
     },
+    methods: {
+        submit() {
+            const valid = this.$refs.form.validate()
+            if (valid) {
+                const dataLogin = {
+                    email: this.email,
+                    password: this.password
+                }
+                localStorage.setItem('user', JSON.stringify(dataLogin));
+                this.$router.push('/home');
+            }
 
+        },
+        back() {
+            this.$router.push('/')
+        }
+    }
 }
 </script>
 
