@@ -8,11 +8,19 @@
           <v-col cols="12">
 
   <v-card
-    class="mx-auto mb-6  elevation-4"
-    max-width="344"
+    class="mx-auto mb-6  elevation-2 mr-10 ml-10 rounded-lg"
+    max-width="100%"
     outlined
   >
-    <v-list-item three-line>
+      <div class="d-flex justify-center align-center pt-5 mx-auto">
+              <v-img
+        alt="Avatar"
+        max-width="100"
+        class="rounded-circle"
+        :src="data"
+      ></v-img>
+      </div>
+      <div class="d-flex-row justify-center align-center text-center pb-4">
       <v-list-item-content>
         <div class="text-overline mb-4">
           Profile
@@ -23,13 +31,7 @@
         </v-list-item-title>
         <v-list-item-subtitle>abcdesf@gmail.com</v-list-item-subtitle>
       </v-list-item-content>
-
-      <v-list-item-avatar
-        alt="Avatar"
-        size="80"
-        color="grey"
-      ></v-list-item-avatar>
-    </v-list-item>
+      </div>
   </v-card>
 
   <v-row 
@@ -69,6 +71,7 @@ data() {
         return {
             isLoggedIn: false,
             value: 1,
+            data: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'
         }
     },
     components: {
