@@ -5,7 +5,7 @@ import './registerServiceWorker'
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import Routes from './routes';
-
+import {store} from './store/store';
 Vue.config.productionTip = false
 
 Vue.use(VueResource);
@@ -31,5 +31,6 @@ Vue.http.interceptors.push(function(request, next){
 new Vue({
   vuetify,
   render: h => h(App),
-  router: router
+  router: router,
+  store: store
 }).$mount('#app')

@@ -3,6 +3,8 @@
         <v-row align="center">
             <v-col cols="12" align-self="center" class="d-flex-row align-center justify-center">
                 <div class="py-20 px-10">
+                {{allUser}}
+                <button type="button" v-on:click="registerUser(10)">Register All</button>
                 <h1 class="text-center">Log In</h1>
                 <v-form
                     ref="form"
@@ -57,6 +59,9 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex';
+import {mapGetters} from 'vuex';
+
 export default {
     name: 'LoginApp',
     data() {
@@ -88,9 +93,31 @@ export default {
             }
 
         },
+        ...mapActions([
+            'registerUser'
+        ]),
+        // registerAllUser: function(data) {
+        //     console.log(data, 'cek');
+        //   this.$store.dispatch('registerAllUser', data);
+        // },
         back() {
             this.$router.push('/')
-        }
+        },
+        //         checkState() {
+        // console.log(this.$store.state.user)
+        // return this.$store.state.user;
+        // },
+        // checkGetter() {
+        // console.log(this.$store.getters.getFirstUser, 'getter');
+        // return this.$store.getters.getFirstUser;
+        // }
+    },
+    computed:  {
+        ...mapGetters([
+            'allUser'
+        ]),
+// this.checkGetter(),
+// this.checkState()
     }
 }
 </script>
