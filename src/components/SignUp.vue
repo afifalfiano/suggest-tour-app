@@ -85,8 +85,40 @@ export default {
       ],
     }),
     methods: {
-      submit () {
+       submit () {
         this.$refs.form.validate()
+        if (this.valid) {
+          const data = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        };
+        try {
+           this.$http.post('http://localhost:8000/api/register', data, {
+             headers: {
+                  "Access-Control-Allow-Origin": "*",
+              }
+           })
+           .then(response => {
+             console.log(response);
+             if(response.ok) {
+                  this.$toast.open({
+                    message: 'Success Register',
+                    type: 'success',
+                    position: 'top-right',
+                });
+
+                setTimeout(() => {
+                  this.$refs.form.reset();
+                  this.$router.push('/login');
+                }, 2000);
+             }
+           })
+        } catch(error){
+          throw new Error(error);
+        }
+        }
+    
       },
       back () {
             this.$router.push('/')

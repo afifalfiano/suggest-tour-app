@@ -6,10 +6,14 @@ import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import Routes from './routes';
 import {store} from './store/store';
+import VueToast from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
 Vue.config.productionTip = false
 
 Vue.use(VueResource);
 Vue.use(VueRouter);
+Vue.use(VueToast);
 
 const router = new VueRouter({
   mode: 'history',
@@ -18,7 +22,11 @@ const router = new VueRouter({
 
 
 Vue.http.interceptors.push(function(request, next){
-  request.headers.set('Authorization', 'Bearer 12345');
+  const user = localStorage.getItem('user');
+  request.headers.set('Authorization', user?.token || null);
+  request.headers.set('Access-Control-Allow-Origin', '*');
+  request.headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  request.headers.set("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
   if (request.headers['Authorization'] === null) {
     return request.respondWith({
       status: 404,
