@@ -12,7 +12,8 @@
       <v-container style="width: 100%; transform: translateY(-100px); height: 100%" class="rounded-t-xl white custom-shadow">
         <v-row align="center">
           <v-col cols="12">
-              <p style="font-size: 24px"><strong>Detail Destination</strong></p>
+              <p style="font-size: 24px" class="mb-1"><strong>{{detailDestination.nama_destinasi}}</strong></p>
+              <small class="pt-0" style="font-size: 16px">{{detailDestination.lokasi}}</small>
           </v-col>
         </v-row>
 
@@ -27,7 +28,7 @@
 
         <v-row id="desc" v-if="showDescription">
           <v-col cols="12">
-          <description-destination></description-destination>
+          <description-destination :detailDestination="detailDestination"></description-destination>
           </v-col>
         </v-row>
 
