@@ -9,7 +9,7 @@
               src="https://media.timeout.com/images/105240189/image.jpg"
             ></v-carousel-item>
           </v-carousel>
-      <v-container style="width: 100%; transform: translateY(-50px); height: 100%" class="rounded-t-xl white custom-shadow">
+      <v-container style="width: 100%; transform: translateY(-100px); height: 100%" class="rounded-t-xl white custom-shadow">
         <v-row align="center">
           <v-col cols="12">
               <p style="font-size: 24px"><strong>Detail Destination</strong></p>
