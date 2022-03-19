@@ -13,18 +13,56 @@
     </div>
     </v-app-bar>
 
-    <v-main class="d-xs mx-auto overflow-y-auto elevation-4" style="max-width:600px">
-      <v-container>
-        <v-row>
-          <v-col cols="12">
-      <h1>Hello World</h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem illum veritatis provident. Consequuntur eius soluta, quaerat cupiditate delectus expedita, maxime id tempore, eum voluptatibus vel! Similique obcaecati possimus error consequatur at assumenda aut libero, excepturi veniam explicabo hic velit quae illum alias necessitatibus dignissimos! Velit, quis dignissimos hic repellat totam corrupti eum ex vel rem, quo aspernatur. Laudantium commodi ullam quod eveniet similique expedita temporibus mollitia quidem, illo quis possimus doloribus. Vel, fugiat minima natus nulla modi doloremque quos consequatur molestiae at exercitationem saepe hic eveniet debitis animi nihil quibusdam cumque sequi cum excepturi veniam aspernatur quidem? Aspernatur, tenetur consequuntur.</p>
+    <v-main class="d-xs mx-auto overflow-y-auto elevation-4 pb-4" style="width: 100%">
+      <v-container style="width: 100%">
+        <v-row align="center pt-2">
+        <v-col cols="12" class="pt-0"  v-for="data in dataDestination" :key="data.id">
+          <v-container fluid>
+          <v-row align="center">
+          <!-- <v-card
+            elevation="2"
+          > -->
+            <v-col cols="4" class="pr-0">
+                  <v-img
+                    aspect-ratio="1"
+                    :src="data.image"
+                    class="d-flex align-center justify-center"
+                  ></v-img>
+            </v-col>
+            <v-col cols="8" class="pl-1">
+              <div class="d-flex justify-space-between align-center">
+              <v-card-title class="d-flex justify-start">{{data.name}}</v-card-title>
+                
+                <div class="d-flex-row align-center justify-end">
+                <v-rating
+                :value="data.rating"
+                color="amber"
+                dense
+                half-increments
+                readonly
+                size="14"
+              ></v-rating>
 
-      <h2 class="mt-5">Hello Guys</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem illum veritatis provident. Consequuntur eius soluta, quaerat cupiditate delectus expedita, maxime id tempore, eum voluptatibus vel! Similique obcaecati possimus error consequatur at assumenda aut libero, excepturi veniam explicabo hic velit quae illum alias necessitatibus dignissimos! Velit, quis dignissimos hic repellat totam corrupti eum ex vel rem, quo aspernatur. Laudantium commodi ullam quod eveniet similique expedita temporibus mollitia quidem, illo quis possimus doloribus. Vel, fugiat minima natus nulla modi doloremque quos consequatur molestiae at exercitationem saepe hic eveniet debitis animi nihil quibusdam cumque sequi cum excepturi veniam aspernatur quidem? Aspernatur, tenetur consequuntur.</p>
+              <div class="grey--text ms-4">
+                {{data.rating}}
+                ({{data.totalReview}})
+              </div>
+              </div>
+            </div>
 
-      <h2 class="mt-5">Hello Guys</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem illum veritatis provident. Consequuntur eius soluta, quaerat cupiditate delectus expedita, maxime id tempore, eum voluptatibus vel! Similique obcaecati possimus error consequatur at assumenda aut libero, excepturi veniam explicabo hic velit quae illum alias necessitatibus dignissimos! Velit, quis dignissimos hic repellat totam corrupti eum ex vel rem, quo aspernatur. Laudantium commodi ullam quod eveniet similique expedita temporibus mollitia quidem, illo quis possimus doloribus. Vel, fugiat minima natus nulla modi doloremque quos consequatur molestiae at exercitationem saepe hic eveniet debitis animi nihil quibusdam cumque sequi cum excepturi veniam aspernatur quidem? Aspernatur, tenetur consequuntur.</p>
+              <v-card-text class="pt-1 text-justify">{{data.description.substring(0, 150) + '....'}}</v-card-text>
+              <v-btn
+                depressed
+                color="primary"
+                class="ml-4"
+              >
+                Detail
+              </v-btn>
+            </v-col>
+            <!-- </v-card> -->
+          </v-row>
+          </v-container>
+          <hr class="mt-4">
       </v-col>
       </v-row>
     </v-container>
@@ -61,6 +99,41 @@ export default {
             isLoggedIn: false,
             value: 0,
             active: true,
+
+            dataDestination: [
+              {
+                id: 1,
+                name: 'Bali',
+                rating: 4.5,
+                image: 'https://media.timeout.com/images/105240189/image.jpg',
+                description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+                totalReview: 100
+              },
+                {
+                id: 2,
+                name: 'Sleman',
+                rating: 4.5,
+                image: 'https://media.timeout.com/images/105240189/image.jpg',
+                description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+                totalReview: 100
+              },
+                {
+                id: 3,
+                name: 'Jogja',
+                rating: 4.5,
+                image: 'https://media.timeout.com/images/105240189/image.jpg',
+                description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+                totalReview: 100
+              },
+              {
+                id: 4,
+                name: 'Bantul',
+                rating: 4.5,
+                image: 'https://media.timeout.com/images/105240189/image.jpg',
+                description: 'lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
+                totalReview: 100
+              }
+            ]
         }
     },
     methods: {
