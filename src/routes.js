@@ -3,26 +3,55 @@ import LoginApp from './components/LoginApp.vue';
 import SignUp from './components/SignUp.vue';
 import HomeApp from './components/HomeApp.vue';
 import DetailApp from './components/DetailApp.vue';
+import AccountApp from './components/AccountApp.vue'
 
+export const authGuard = (to, from, next) => {
+    const user = localStorage.getItem('user');
+    if (user === null || user === undefined) {
+        next({path: '/'})
+    } else {
+       next()
+    }
+}
 export default [
     {
         path: '/',
-        component: LandingPage
+        component: LandingPage,
+        name: 'Landing Page'
     },
     {
         path: '/login',
-        component: LoginApp
+        component: LoginApp,
+        name: 'Login'
     },
     {
         path: '/signup',
-        component: SignUp
+        component: SignUp,
+        name: 'SignUp'
     },
     {
         path: '/home',
         component: HomeApp,
+        beforeEnter: ((to, from, next) => {
+           authGuard(to, from, next);
+          }),
+        name: 'Home'
     },
     {
         path: '/home/detail/:id',
         component: DetailApp,
+        beforeEnter: ((to, from, next) => {
+            authGuard(to, from, next);
+           }),
+           name: 'Detail'
+        
     },
+    {
+        path: '/account',
+        component: AccountApp,
+        beforeEnter: ((to, from, next) => {
+            authGuard(to, from, next);
+           }),
+        name: 'Account'
+    }
 ]

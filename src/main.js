@@ -16,6 +16,7 @@ const router = new VueRouter({
   routes: Routes
 })
 
+
 Vue.http.interceptors.push(function(request, next){
   request.headers.set('Authorization', 'Bearer 12345');
   if (request.headers['Authorization'] === null) {
