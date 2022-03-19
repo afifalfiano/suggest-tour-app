@@ -15,6 +15,8 @@
 
     <v-main class="d-xs mx-auto overflow-y-auto elevation-4" style="max-width:600px">
       <!-- <HelloWorld/> -->
+      <app-login />
+      <app-signUp />
       <v-container>
         <v-row>
           <v-col cols="12">
@@ -55,12 +57,15 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld';
+import LoginApp from './components/Login.vue';
+import SignUp from './components/SignUp.vue';
 
 export default {
   name: 'App',
 
   components: {
-    // HelloWorld,
+    'app-signUp': SignUp,
+    'app-login': LoginApp
   },
 
   data: () => ({
