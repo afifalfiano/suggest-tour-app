@@ -5,7 +5,7 @@
     <v-main class="d-xs mx-auto overflow-y-auto elevation-4 pb-14" style="width: 100%">
       <v-container style="width: 100%">
         <v-row align="center" class="mt-2">
-          <v-col cols="12">
+          <v-col cols="12" class="pb-0">
             <v-text-field
             outlined
             v-model="search"
@@ -18,11 +18,13 @@
         <v-col cols="12" class="pt-0"  v-for="data in filterDestination" :key="data.id">
           <v-container fluid>
           <v-row align="center">
-            <v-col cols="4" class="pr-0">
+            <v-col cols="4" class="pr-0 pl-0 pt-0 pb-0">
                   <v-img
                     aspect-ratio="1"
                     :src="data.image"
+                    min-height="180"
                     class="d-flex align-center justify-center"
+                    style="transform: translateY(5px)"
                   ></v-img>
             </v-col>
             <v-col cols="8" class="pl-1">
@@ -46,7 +48,7 @@
               </div>
             </div>
 
-              <v-card-text class="pt-1 text-justify">{{data.description.substring(0, 150) + '....'}}</v-card-text>
+              <v-card-text class="pt-1 text-justify">{{data.description.substring(0, 90) + '....'}}</v-card-text>
               <v-btn
                 depressed
                 color="primary"
