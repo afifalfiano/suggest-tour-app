@@ -152,7 +152,13 @@ export default {
     }
   },
   getAllDestination: function() {
-    this.$http.get('http://localhost:8000/api/Destinasi').then(response => {
+          let url = 'http://localhost:8000';
+      if(window.location.href.match(/localhost/g)) {
+        url = 'http://localhost:8000';
+      } else {
+        url = 'https://suggest-app.000webhostapp.com';
+      }
+    this.$http.get(`${url}/api/Destinasi`).then(response => {
       this.dataDestination = response.body.data.map(item => {
         return {
           id: item.id,

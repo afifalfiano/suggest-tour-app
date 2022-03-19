@@ -93,7 +93,13 @@ export default {
         this.showDescription = true;
       },
       getDestination() {
-        this.$http.get('http://localhost:8000/api/Destinasi/' + this.idDestination).then(response => {
+        let url = 'http://localhost:8000';
+        if(window.location.href.match(/localhost/g)) {
+          url = 'http://localhost:8000';
+        } else {
+          url = 'https://suggest-app.000webhostapp.com';
+        }
+        this.$http.get(`${url}/api/Destinasi/` + this.idDestination).then(response => {
           this.detailDestination = response.body.data;
         }).catch(error => {
           console.log(error);

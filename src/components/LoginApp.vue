@@ -83,7 +83,13 @@ export default {
           password: this.password,
         };
         try {
-           this.$http.post('http://localhost:8000/api/login', data)
+        let url = 'http://localhost:8000';
+        if(window.location.href.match(/localhost/g)) {
+          url = 'http://localhost:8000';
+        } else {
+          url = 'https://suggest-app.000webhostapp.com';
+        }
+           this.$http.post(`${url}/api/login`, data)
            .then(response => {
              console.log(response);
              if(response.ok) {
