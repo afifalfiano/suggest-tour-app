@@ -77,15 +77,38 @@ export default {
     },
     methods: {
         submit() {
-            const valid = this.$refs.form.validate()
-            if (valid) {
-                const dataLogin = {
-                    email: this.email,
-                    password: this.password
-                }
-                localStorage.setItem('user', JSON.stringify(dataLogin));
-                this.$router.push('/home');
-            }
+        if (this.valid) {
+          const data = {
+          email: this.email,
+          password: this.password,
+        };
+        try {
+           this.$http.post('http://localhost:8000/api/login', data)
+           .then(response => {
+             console.log(response);
+             if(response.ok) {
+                  this.$toast.open({
+                    message: 'Success Login',
+                    type: 'success',
+                    position: 'top-right',
+                });
+                localStorage.setItem('user', JSON.stringify(response.body));
+                
+                setTimeout(() => {
+                  this.$refs.form.reset();
+                  this.$router.push('/home');
+                }, 2000);
+             }
+           })
+        } catch(error){
+            this.$toast.open({
+                message: 'Something wrong!',
+                type: 'error',
+                position: 'top-right',
+            });
+          throw new Error(error);
+        }
+        }
 
         },
         back() {

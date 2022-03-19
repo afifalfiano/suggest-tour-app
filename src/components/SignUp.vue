@@ -115,6 +115,11 @@ export default {
              }
            })
         } catch(error){
+            this.$toast.open({
+            message: 'Something wrong!',
+            type: 'error',
+            position: 'top-right',
+            });
           throw new Error(error);
         }
         }
