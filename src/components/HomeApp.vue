@@ -2,7 +2,7 @@
     <v-app class="d-xs" >
       <header-app />
 
-    <v-main class="d-xs mx-auto overflow-y-auto elevation-4 pb-4" style="width: 100%">
+    <v-main class="d-xs mx-auto overflow-y-auto elevation-4 pb-14" style="width: 100%">
       <v-container style="width: 100%">
         <v-row align="center" class="mt-2">
           <v-col cols="12">
