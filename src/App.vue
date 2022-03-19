@@ -1,5 +1,10 @@
 <template>
+  
   <v-app class="d-xs" >
+    <div v-if="!isLoggedIn">
+      <app-login></app-login>
+    </div>
+
     <v-app-bar
       app
       class="mx-auto"
@@ -7,16 +12,14 @@
       max-width="600"
       justify="center"
       dark
+      v-if="isLoggedIn"
     >
     <div class="d-flex align-center justify-center">
       <h1 class="display-1 font-weight-bold">Suggest Tour App</h1>
     </div>
     </v-app-bar>
 
-    <v-main class="d-xs mx-auto overflow-y-auto elevation-4" style="max-width:600px">
-      <!-- <HelloWorld/> -->
-      <app-login />
-      <app-signUp />
+    <v-main class="d-xs mx-auto overflow-y-auto elevation-4" style="max-width:600px" v-if="isLoggedIn">
       <v-container>
         <v-row>
           <v-col cols="12">
@@ -31,9 +34,12 @@
       </v-col>
       </v-row>
     </v-container>
+
+     <router-view />
     </v-main>
 
       <v-bottom-navigation
+      v-if="isLoggedIn"
       style="max-width: 600px; background-color: none"
       class="mx-auto d-flex justify-space-around"
     :value="value"
@@ -58,19 +64,19 @@
 <script>
 // import HelloWorld from './components/HelloWorld';
 import LoginApp from './components/Login.vue';
-import SignUp from './components/SignUp.vue';
+// import SignUp from './components/SignUp.vue';
 
 export default {
   name: 'App',
-
   components: {
-    'app-signUp': SignUp,
+    // 'app-signUp': SignUp,
     'app-login': LoginApp
   },
 
   data: () => ({
     value: 0,
     active: true,
+    isLoggedIn: true
   }),
 };
 </script>
