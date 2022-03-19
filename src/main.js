@@ -25,7 +25,7 @@ Vue.http.interceptors.push(function(request, next){
   const user = localStorage.getItem('user');
   const token = JSON.parse(user)?.token || null;
   console.log(user, 'usr');
-  request.headers.set('Authorization', `Bearer ${token}`);
+  request.headers.set('token', `${token}`);
   request.headers.set('Access-Control-Allow-Origin', '*');
   request.headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   request.headers.set("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");

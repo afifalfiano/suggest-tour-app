@@ -41,10 +41,9 @@
                 size="14"
               ></v-rating>
 
-              <div class="grey--text ms-4">
-                {{data.rating}}
+              <!-- <div class="grey--text ms-4">
                 ({{data.totalReview}})
-              </div>
+              </div> -->
               </div>
             </div>
 
@@ -143,15 +142,32 @@ export default {
       onDetail(id) {
         this.$router.push('/home/detail/' + id);
       },
-      checkLogin: function() {
-      const user = localStorage.getItem('user');
-      if (user !== null) {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-        this.$router.push('/login');
-      }
+          checkLogin: function() {
+    const user = localStorage.getItem('user');
+    if (user !== null) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+      this.$router.push('/login');
     }
+  },
+  getAllDestination: function() {
+    this.$http.get('http://localhost:8000/api/Destinasi').then(response => {
+      this.dataDestination = response.body.data.map(item => {
+        return {
+          id: item.id,
+          name: item.nama_destinasi,
+          rating: 5,
+          image: 'https://media.timeout.com/images/105240189/image.jpg',
+          description: item.deskripsi,
+          totalReview:  10
+        }
+      });
+    }).catch(error => {
+      console.log(error);
+      throw new Error(error);
+    })
+  }
     },
     computed: {
       filterDestination: function() {
@@ -162,7 +178,8 @@ export default {
       },
     },
     created() {
-        this.checkLogin()
+      this.checkLogin(),
+      this.getAllDestination()
     },
 }
 </script>
