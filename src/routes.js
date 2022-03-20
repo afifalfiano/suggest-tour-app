@@ -1,11 +1,5 @@
-// import LandingPage from './components/LandingPage.vue';
 import LoginApp from './components/LoginApp.vue';
 import SignUp from './components/SignUp.vue';
-// import HomeApp from './components/HomeApp.vue';
-// import DetailApp from './components/DetailApp.vue';
-// import AccountApp from './components/AccountApp.vue'
-// import UpdateAccount from './components/UpdateAccount.vue'
-// import AddReview from './components/AddReview.vue'
 
 const HomeApp = () => import('./components/HomeApp.vue');
 const DetailApp = () => import('./components/DetailApp.vue');

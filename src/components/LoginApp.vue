@@ -74,8 +74,17 @@
 import { mapGetters } from 'vuex';
 export default {
   name: "LoginApp",
+  mounted() {
+    if (localStorage.getItem('reloaded')) {
+        localStorage.removeItem('reloaded');
+    } else {
+        localStorage.setItem('reloaded', '1');
+        location.href = '/';
+    }
+  },
   data() {
     return {
+      checkReload: 0,
       valid: true,
       showPassword: false,
       email: "",
