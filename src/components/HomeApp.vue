@@ -54,12 +54,12 @@
                 </v-col>
                 <v-col
                   cols="8"
-                  class="pl-1"
+                  class="pl-1 pr-0 "
                 >
                   <div class="d-flex-row">
-                    <v-card-title class="d-flex justify-start pb-0">{{data.name}}</v-card-title>
+                    <v-card-title class="d-flex justify-start pb-0 pr-0 pt-0">{{data.name}}</v-card-title>
 
-                    <div class="d-flex-row align-center justify-end pl-3">
+                    <div class="d-flex align-center justify-start pl-3" style="display: flex;">
                       <v-rating
                         :value="data.rating"
                         color="amber"
@@ -69,13 +69,13 @@
                         size="14"
                       ></v-rating>
 
-                      <!-- <div class="grey--text ms-4">
-                ({{data.totalReview}})
-              </div> -->
+                     <div class="grey--text ms-4">
+                      ({{data.totalReview}})
+                    </div>
                     </div>
                   </div>
 
-                  <v-card-text class="pt-1">{{data.description.substring(0, 90) + '....'}}</v-card-text>
+                  <v-card-text class="pt-1 pb-1 pr-0">{{data.description.substring(0, 90) + '....'}}</v-card-text>
                   <v-btn
                     depressed
                     color="primary"
