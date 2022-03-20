@@ -16,6 +16,7 @@ workbox.precaching.precacheAndRoute([
 // eslint-disable-next-line no-undef
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg|ico)$/,
+// eslint-disable-next-line no-undef
   workbox.strategies.cacheFirst()
 );
 
