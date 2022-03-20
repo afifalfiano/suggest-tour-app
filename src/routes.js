@@ -26,6 +26,7 @@ export default [
         path: '/',
         component: LoginApp,
         name: 'Login',
+        redirect: "/login",
     },
     {
         path: '/login',
