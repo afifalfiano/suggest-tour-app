@@ -13,8 +13,8 @@
           <div v-for="review in dataReview" :key="review.id">
             <v-container>
             <v-row>
-              <v-col cols="2">
-                <v-img :alt="review.name" :src="review.image"  max-width="70" class="rounded-circle"></v-img>
+              <v-col cols="2" class="pb-0 pr-0 pl-0">
+                <v-img :alt="review.name" :src="review.image"  max-width="100" class="rounded-circle"></v-img>
               </v-col>
               <v-col cols="10">
                 <div class="d-flex justify-space-between">
