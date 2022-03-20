@@ -115,11 +115,52 @@ export default {
         this.$router.push("/");
       }
     },
-    submit() {},
+    submit() {
+      if (this.valid) {
+        const data = {
+          name: this.name,
+        };
+
+                    let url = "https://suggesttour.herokuapp.com";
+            if (window.location.href.match(/localhost/g)) {
+              url = "https://suggesttour.herokuapp.com";
+            } else {
+              url = "https://suggesttour.herokuapp.com";
+            }
+
+      try {
+        this.$http
+          .put(`${url}/api/User/${this.dataUser.id}`, data)
+          .then((response) => {
+            if (response.ok) {
+                this.$toast.open({
+                  message: "Berhasil mengubah profile",
+                  type: "success",
+                  position: "top-right",
+                });
+
+                setTimeout(() => {
+                  this.$router.push("/account");
+                }, 2000)
+            }
+          })
+          .catch((error) => {
+                  this.$toast.open({
+                  message: "Gagal mengubah profile",
+                  type: "error",
+                  position: "top-right",
+                });
+                throw new Error(error);
+      });
+    } catch(err) {
+      throw new Error(err);
+    }
+    }
+    },
     back() {
       this.$router.push("/account");
     },
-  },
+    }
 };
 </script>
 

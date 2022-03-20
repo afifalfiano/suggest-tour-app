@@ -86,12 +86,38 @@ export default {
   },
   created() {
     this.getUser();
+    this.getUserEndpoint();
   },
   components: {
     "header-app": HeaderApp,
     "menu-bar": MenuBar,
   },
   methods: {
+
+        getUserEndpoint() {
+                          let url = "https://suggesttour.herokuapp.com";
+            if (window.location.href.match(/localhost/g)) {
+              url = "https://suggesttour.herokuapp.com";
+            } else {
+              url = "https://suggesttour.herokuapp.com";
+            }
+      try {
+        this.$http
+          .get(`${url}/api/User/${this.dataUser.id}`)
+          .then((response) => {
+            
+            delete response.body.data[0].review;
+            this.dataUser = response.body.data[0];
+            localStorage.setItem("user", JSON.stringify(this.dataUser));
+            console.log(response.body);
+          })
+          .catch((error) => {
+            throw new Error(error);
+          });
+      } catch(error) {
+        throw new Error(error);
+      }
+      },
     getUser() {
       const data = localStorage.getItem("user");
       this.dataUser = JSON.parse(data);
