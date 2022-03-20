@@ -12,8 +12,19 @@
       <v-container style="width: 100%; transform: translateY(-100px); height: 100%" class="rounded-t-xl white custom-shadow">
         <v-row align="center">
           <v-col cols="12">
-              <p style="font-size: 24px" class="mb-1"><strong>{{detailDestination.nama_destinasi}}</strong></p>
-              <small class="pt-0" style="font-size: 16px">{{detailDestination.lokasi}}</small>
+              <p style="font-size: 24px" class="mb-0"><strong>{{detailDestination.nama_destinasi}}</strong></p>
+              <small class="pt-0" style="font-size: 16px; transform: translateY(-5)">{{detailDestination.lokasi}}</small>
+              <div style="display: flex;" class="pt-2">
+                <v-rating
+                :value="5"
+                color="amber"
+                dense
+                half-increments
+                readonly
+                size="14"
+              ></v-rating>
+              <small >(5)</small>
+              </div>
           </v-col>
         </v-row>
 
