@@ -17,24 +17,16 @@
             class="d-flex-row align-center justify-center"
           >
             <div class="py-20 px-10">
-              <h1 class="text-center pb-10">Tambah Review</h1>
+              <h1 class="text-center pb-5">Tambah Review</h1>
               <v-form
                 ref="form"
                 v-model="valid"
                 v-on:submi.prevent="submit"
                 lazy-validation
               >
-                <v-text-field
-                  v-model="rating"
-                  type="number"
-                  max="5"
-                  min="1"
-                  step="0.1"
-                  filled
-                  :rules="ratingRules"
-                  label="Rating"
-                  required
-                ></v-text-field>
+                <div class="d-flex-row pb-4">
+                    <v-rating v-model="rating" color="orange" :length="5" large></v-rating>
+                </div>
 
                 <v-text-field
                   v-model="review"
@@ -93,7 +85,7 @@ export default {
       value: 0,
       review: "",
       reviewRules: [(v) => !!v || "Review is required"],
-      rating: 5,
+      rating: 0,
       ratingRules: [(v) => !!v || "Rating is required"],
     };
   },
