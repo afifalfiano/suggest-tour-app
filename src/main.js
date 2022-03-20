@@ -5,7 +5,7 @@ import './registerServiceWorker'
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import Routes from './routes';
-import {store} from './store/store';
+import { store } from './store/store';
 import VueToast from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
@@ -21,7 +21,7 @@ const router = new VueRouter({
 })
 
 
-Vue.http.interceptors.push(function(request, next){
+Vue.http.interceptors.push(function (request, next) {
   const user = localStorage.getItem('user');
   const token = JSON.parse(user)?.token || null;
   request.headers.set('token', `${token}`);

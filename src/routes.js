@@ -10,9 +10,9 @@ import AddReview from './components/AddReview.vue'
 export const authGuard = (to, from, next) => {
     const user = localStorage.getItem('user');
     if (user === null || user === undefined) {
-        next({path: '/'})
+        next({ path: '/' })
     } else {
-       next()
+        next()
     }
 }
 export default [
@@ -35,8 +35,8 @@ export default [
         path: '/home',
         component: HomeApp,
         beforeEnter: ((to, from, next) => {
-           authGuard(to, from, next);
-          }),
+            authGuard(to, from, next);
+        }),
         name: 'Home'
     },
     {
@@ -44,34 +44,34 @@ export default [
         component: DetailApp,
         beforeEnter: ((to, from, next) => {
             authGuard(to, from, next);
-           }),
-           name: 'Detail'
-        
+        }),
+        name: 'Detail'
+
     },
     {
         path: '/home/review',
         component: AddReview,
         beforeEnter: ((to, from, next) => {
             authGuard(to, from, next);
-           }),
-           name: 'Review'
-        
+        }),
+        name: 'Review'
+
     },
     {
         path: '/home/review/:id',
         component: AddReview,
         beforeEnter: ((to, from, next) => {
             authGuard(to, from, next);
-           }),
-           name: 'Update Review'
-        
+        }),
+        name: 'Update Review'
+
     },
     {
         path: '/account',
         component: AccountApp,
         beforeEnter: ((to, from, next) => {
             authGuard(to, from, next);
-           }),
+        }),
         name: 'Account'
     },
     {
@@ -79,7 +79,7 @@ export default [
         component: UpdateAccount,
         beforeEnter: ((to, from, next) => {
             authGuard(to, from, next);
-           }),
+        }),
         name: 'Update Account'
     }
 ]
