@@ -8,6 +8,7 @@
   >
     <v-btn
       class="fill-height"
+      aria-label="Home"
       @click="onHome"
     >
       <v-icon>mdi-home</v-icon>
@@ -15,6 +16,7 @@
 
     <v-btn
       class="fill-height"
+      aria-label="Account"
       @click="onAccount"
     >
       <v-icon>mdi-account</v-icon>
@@ -22,6 +24,7 @@
 
     <v-btn
       class="fill-height"
+      aria-label="Logout"
       @click="logout"
     >
       <v-icon>mdi-logout</v-icon>
