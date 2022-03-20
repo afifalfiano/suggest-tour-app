@@ -93,14 +93,14 @@ export default {
         this.showDescription = true;
       },
       getDestination() {
-        let url = 'http://localhost:8000';
+        let url = 'https://suggesttour.herokuapp.com';
         if(window.location.href.match(/localhost/g)) {
-          url = 'http://localhost:8000';
+          url = 'https://suggesttour.herokuapp.com';
         } else {
           url = 'https://suggesttour.herokuapp.com';
         }
         this.$http.get(`${url}/api/Destinasi/` + this.idDestination).then(response => {
-          this.detailDestination = response.body.data;
+          this.detailDestination = response.body.data[0];
         }).catch(error => {
           console.log(error);
           throw new Error(error);

@@ -87,6 +87,23 @@ export default {
     methods: {
         addReview() {
         },
+        getReview() {
+        let url = 'https://suggesttour.herokuapp.com';
+        if(window.location.href.match(/localhost/g)) {
+          url = 'https://suggesttour.herokuapp.com';
+        } else {
+          url = 'https://suggesttour.herokuapp.com';
+        }
+        this.$http.get(`${url}/api/Review`).then(response => {
+          this.detailDestination = response.body;
+        }).catch(error => {
+          console.log(error);
+          throw new Error(error);
+        })
+      }
+    },
+    created() {
+      this.getReview();
     }
 }
 </script>

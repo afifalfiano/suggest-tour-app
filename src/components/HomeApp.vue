@@ -47,7 +47,7 @@
               </div>
             </div>
 
-              <v-card-text class="pt-1 text-justify">{{data.description.substring(0, 90) + '....'}}</v-card-text>
+              <v-card-text class="pt-1">{{data.description.substring(0, 90) + '....'}}</v-card-text>
               <v-btn
                 depressed
                 color="primary"
@@ -152,9 +152,9 @@ export default {
     }
   },
   getAllDestination: function() {
-          let url = 'http://localhost:8000';
+          let url = 'https://suggesttour.herokuapp.com';
       if(window.location.href.match(/localhost/g)) {
-        url = 'http://localhost:8000';
+        url = 'https://suggesttour.herokuapp.com';
       } else {
         url = 'https://suggesttour.herokuapp.com';
       }

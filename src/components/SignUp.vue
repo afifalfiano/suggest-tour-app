@@ -94,9 +94,9 @@ export default {
           password: this.password,
         };
         try {
-                  let url = 'http://localhost:8000';
+                  let url = 'https://suggesttour.herokuapp.com';
         if(window.location.href.match(/localhost/g)) {
-          url = 'http://localhost:8000';
+          url = 'https://suggesttour.herokuapp.com';
         } else {
           url = 'https://suggesttour.herokuapp.com';
         }
