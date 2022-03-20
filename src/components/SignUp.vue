@@ -143,5 +143,8 @@ export default {
 </script>
 
 <style scoped>
-
+    .link {
+        color: green;
+        text-decoration: none;
+    }
 </style>
