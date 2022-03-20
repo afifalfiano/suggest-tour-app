@@ -29,7 +29,7 @@ Vue.http.interceptors.push(function (request, next) {
   request.headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   request.headers.set("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
   if (token === null) {
-    if (window.location.href.match(/login/g) || window.location.href.match(/signup/g) ||  window.location.href.match(/''/g)) {
+    if (window.location.href.match(/login/g) || window.location.href.match(/signup/g) ||  window.location.href.match('/')) {
       next();
     } else {
       return request.respondWith({
