@@ -29,13 +29,17 @@
                 size="14"
               ></v-rating>
               <small style="color: #616161;">({{review.rating}})</small>
-                    <div v-if="review.currentUser" style="cursor: pointer" @click="onUpdateReview(review.id)"> 
-                    <v-icon right>
-                    mdi-pencil
-                      </v-icon></div>
-                    </div>
+                 </div>
                 </div>
                 <p>{{review.review}} <small style="color: #616161;">({{review.date}})</small></p>
+                    <div v-if="review.currentUser" class="d-flex justify-end align-center"> 
+                    <v-icon right style="cursor: pointer" color="green" @click="onUpdateReview(review.id)">
+                    mdi-pencil
+                      </v-icon>
+                    <v-icon right style="cursor: pointer;" color="red" @click="onDeleteReview(review.id)">
+                    mdi-delete
+                      </v-icon>
+                      </div>
               </v-col>
             </v-row>
             </v-container>
@@ -125,6 +129,32 @@ export default {
           item.currentUser = false;
           }
           return item;
+        })
+      },
+      onDeleteReview(id) {
+        let url = 'https://suggesttour.herokuapp.com';
+        if(window.location.href.match(/localhost/g)) {
+          url = 'https://suggesttour.herokuapp.com';
+        } else {
+          url = 'https://suggesttour.herokuapp.com';
+        }
+        this.$http.delete(`${url}/api/Review/${id}`).then(response => {
+          if (response.ok) {
+            this.$toast.open({
+                message: 'Success Delete Review',
+                type: 'success',
+                position: 'top-right',
+            });
+            this.getReview();
+          }
+        }).catch(error => {
+              this.$toast.open({
+              message: 'Error Delete',
+              type: 'error',
+              position: 'top-right',
+          });
+          throw new Error(error);
+                   
         })
       }
     },
