@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import HeaderApp from "./HeaderApp.vue";
 import MenuBar from "./MenuBar.vue";
 
@@ -111,13 +112,7 @@ export default {
         const pathParam = this.$route.path.split("/");
         if (pathParam[3] === undefined) {
           try {
-            let url = "https://suggesttour.herokuapp.com";
-            if (window.location.href.match(/localhost/g)) {
-              url = "https://suggesttour.herokuapp.com";
-            } else {
-              url = "https://suggesttour.herokuapp.com";
-            }
-            this.$http.post(`${url}/api/Review`, data).then((response) => {
+            this.$http.post(`${this.baseUrl}/api/Review`, data).then((response) => {
               if (response.ok) {
                 this.$toast.open({
                   message: "Berhasil menambahkan review",
@@ -143,14 +138,8 @@ export default {
           }
         } else {
           try {
-            let url = "https://suggesttour.herokuapp.com";
-            if (window.location.href.match(/localhost/g)) {
-              url = "https://suggesttour.herokuapp.com";
-            } else {
-              url = "https://suggesttour.herokuapp.com";
-            }
             this.$http
-              .put(`${url}/api/Review/${pathParam[3]}`, data)
+              .put(`${this.baseUrl}/api/Review/${pathParam[3]}`, data)
               .then((response) => {
                 if (response.ok) {
                   this.$toast.open({
@@ -185,14 +174,8 @@ export default {
       const pathParam = this.$route.path.split("/");
       if (pathParam[3] !== undefined) {
         try {
-          let url = "https://suggesttour.herokuapp.com";
-          if (window.location.href.match(/localhost/g)) {
-            url = "https://suggesttour.herokuapp.com";
-          } else {
-            url = "https://suggesttour.herokuapp.com";
-          }
           this.$http
-            .get(`${url}/api/Review/${pathParam[3]}`)
+            .get(`${this.baseUrl}/api/Review/${pathParam[3]}`)
             .then((response) => {
               if (response.ok) {
                 this.review = response.body.data[0].review;
@@ -215,6 +198,9 @@ export default {
         }
       }
     },
+  },
+  computed: {
+    ...mapGetters(['baseUrl'])
   },
   created() {
     this.doGetCurrentReview();

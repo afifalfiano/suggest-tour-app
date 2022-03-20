@@ -102,7 +102,7 @@
 <script>
 import HeaderApp from "./HeaderApp.vue";
 import MenuBar from "./MenuBar.vue";
-
+import { mapGetters } from 'vuex';
 export default {
   name: "HomeApp",
   components: {
@@ -118,6 +118,7 @@ export default {
       dataDestination: [],
     };
   },
+  
   methods: {
     logout() {
       const user = localStorage.getItem("user");
@@ -141,14 +142,8 @@ export default {
       }
     },
     getAllDestination: function () {
-      let url = "https://suggesttour.herokuapp.com";
-      if (window.location.href.match(/localhost/g)) {
-        url = "https://suggesttour.herokuapp.com";
-      } else {
-        url = "https://suggesttour.herokuapp.com";
-      }
       this.$http
-        .get(`${url}/api/Destinasi`)
+        .get(`${this.baseUrl}/api/Destinasi`)
         .then((response) => {
           this.dataDestination = response.body.data.map((item) => {
             return {
@@ -171,6 +166,7 @@ export default {
         });
     },
   },
+  
   computed: {
     filterDestination: function () {
       return this.dataDestination.filter((item) => {
@@ -178,6 +174,7 @@ export default {
         return item.name.match(regex);
       });
     },
+  ...mapGetters(['baseUrl'])
   },
   created() {
     this.checkLogin(), this.getAllDestination();

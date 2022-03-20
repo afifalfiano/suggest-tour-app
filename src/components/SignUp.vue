@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 export default {
   name: "SignUp",
   data: () => ({
@@ -104,6 +106,11 @@ export default {
       (v) => v.length >= 8 || "Min 8 characters",
     ],
   }),
+  computed: {
+    ...mapGetters([
+      'baseUrl'
+    ])
+  },
   methods: {
     submit() {
       this.$refs.form.validate();
@@ -114,13 +121,7 @@ export default {
           password: this.password,
         };
         try {
-          let url = "https://suggesttour.herokuapp.com";
-          if (window.location.href.match(/localhost/g)) {
-            url = "https://suggesttour.herokuapp.com";
-          } else {
-            url = "https://suggesttour.herokuapp.com";
-          }
-          this.$http.post(`${url}/api/register`, data).then((response) => {
+          this.$http.post(`${this.baseUrl}/api/register`, data).then((response) => {
             if (response.ok) {
               this.$toast.open({
                 message: "Berhasil daftar",

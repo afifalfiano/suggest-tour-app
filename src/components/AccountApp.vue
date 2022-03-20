@@ -73,6 +73,7 @@
 <script>
 import HeaderApp from "./HeaderApp.vue";
 import MenuBar from "./MenuBar.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "AccountApp",
@@ -93,17 +94,10 @@ export default {
     "menu-bar": MenuBar,
   },
   methods: {
-
         getUserEndpoint() {
-                          let url = "https://suggesttour.herokuapp.com";
-            if (window.location.href.match(/localhost/g)) {
-              url = "https://suggesttour.herokuapp.com";
-            } else {
-              url = "https://suggesttour.herokuapp.com";
-            }
       try {
         this.$http
-          .get(`${url}/api/User/${this.dataUser.id}`)
+          .get(`${this.baseUrl}/api/User/${this.dataUser.id}`)
           .then((response) => {
             
             delete response.body.data[0].review;
@@ -139,6 +133,9 @@ export default {
       this.$router.push("/account/update");
     },
   },
+  computed: {
+    ...mapGetters(['baseUrl'])
+  }
 };
 </script>
 

@@ -77,6 +77,7 @@
 <script>
 import HeaderApp from "./HeaderApp.vue";
 import MenuBar from "./MenuBar.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "UpdateAccount",
@@ -120,17 +121,9 @@ export default {
         const data = {
           name: this.name,
         };
-
-                    let url = "https://suggesttour.herokuapp.com";
-            if (window.location.href.match(/localhost/g)) {
-              url = "https://suggesttour.herokuapp.com";
-            } else {
-              url = "https://suggesttour.herokuapp.com";
-            }
-
       try {
         this.$http
-          .put(`${url}/api/User/${this.dataUser.id}`, data)
+          .put(`${this.baseUrl}/api/User/${this.dataUser.id}`, data)
           .then((response) => {
             if (response.ok) {
                 this.$toast.open({
@@ -160,6 +153,11 @@ export default {
     back() {
       this.$router.push("/account");
     },
+    },
+    computed: {
+          ...mapGetters([
+      'baseUrl'
+    ])
     }
 };
 </script>

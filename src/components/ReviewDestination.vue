@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "ReviewDestination",
   props: {
@@ -84,6 +85,9 @@ export default {
       type: Array,
       required: true,
     },
+  },
+  computed: {
+    ...mapGetters(['baseUrl'])
   },
   data() {
     return {
@@ -114,20 +118,6 @@ export default {
         query: { id_destination: this.idDestination },
       });
     },
-    //   getReview() {
-    //   let url = 'https://suggesttour.herokuapp.com';
-    //   const path = this.$route.params.id;
-    //   if(window.location.href.match(/localhost/g)) {
-    //     url = 'https://suggesttour.herokuapp.com';
-    //   } else {
-    //     url = 'https://suggesttour.herokuapp.com';
-    //   }
-    //   this.$http.get(`${url}/api/Review/${path}`).then(response => {
-    //     this.detailDestination = response.body;
-    //   }).catch(error => {
-    //     throw new Error(error);
-    //   })
-    // },
     checkUserLogin() {
       const user = localStorage.getItem("user");
       const data = JSON.parse(user) || null;
@@ -141,14 +131,8 @@ export default {
       });
     },
     onDeleteReview(id) {
-      let url = "https://suggesttour.herokuapp.com";
-      if (window.location.href.match(/localhost/g)) {
-        url = "https://suggesttour.herokuapp.com";
-      } else {
-        url = "https://suggesttour.herokuapp.com";
-      }
       this.$http
-        .delete(`${url}/api/Review/${id}`)
+        .delete(`${this.baseUrl}/api/Review/${id}`)
         .then((response) => {
           if (response.ok) {
             this.$toast.open({

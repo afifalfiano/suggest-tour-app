@@ -32,6 +32,7 @@
   </v-bottom-navigation>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "MenuBar",
   props: {
@@ -40,20 +41,17 @@ export default {
       default: 0,
     },
   },
+    computed: {
+    ...mapGetters(['baseUrl'])
+  },
   methods: {
     logout() {
       this.$emit("logout", true);
-          let url = "https://suggesttour.herokuapp.com";
-          if (window.location.href.match(/localhost/g)) {
-            url = "https://suggesttour.herokuapp.com";
-          } else {
-            url = "https://suggesttour.herokuapp.com";
-          }
       try {
           const payload = {
             token: null
           };
-          this.$http.put(url + "/api/User/logout", payload).then(response => {
+          this.$http.put(this.baseUrl + "/api/User/logout", payload).then(response => {
             if (response.ok) {
                 this.$toast.open({
                   message: "Berhasil keluar",

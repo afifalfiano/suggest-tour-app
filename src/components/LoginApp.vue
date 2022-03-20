@@ -53,13 +53,6 @@
               >
                 Masuk
               </v-btn>
-              <!-- <v-btn
-                    color="warning"
-                    class="mr-4"
-                    @click="back"
-                    >
-                    Kembali
-                    </v-btn> -->
             </div>
           </v-form>
         </div>
@@ -78,6 +71,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   name: "LoginApp",
   data() {
@@ -96,6 +90,9 @@ export default {
       ],
     };
   },
+  computed: {
+    ...mapGetters(['baseUrl'])
+  },
   methods: {
     submit() {
       if (this.valid) {
@@ -104,13 +101,7 @@ export default {
           password: this.password,
         };
         try {
-          let url = "https://suggesttour.herokuapp.com";
-          if (window.location.href.match(/localhost/g)) {
-            url = "https://suggesttour.herokuapp.com";
-          } else {
-            url = "https://suggesttour.herokuapp.com";
-          }
-          this.$http.post(`${url}/api/login`, data).then((response) => {
+          this.$http.post(`${this.baseUrl}/api/login`, data).then((response) => {
             if (response.ok) {
               this.$toast.open({
                 message: "Berhasil masuk",

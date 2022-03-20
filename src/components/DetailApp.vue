@@ -105,7 +105,7 @@ import DescriptionDestination from "./DescriptionDestination.vue";
 import ReviewDestination from "./ReviewDestination.vue";
 import HeaderApp from "./HeaderApp.vue";
 import MenuBar from "./MenuBar.vue";
-
+import { mapGetters } from 'vuex';
 export default {
   name: "DetailApp",
   components: {
@@ -129,6 +129,9 @@ export default {
   created() {
     this.getDestination();
   },
+  computed: {
+    ...mapGetters(["baseUrl"]),
+  },
   methods: {
     logout() {
       const user = localStorage.getItem("user");
@@ -148,14 +151,8 @@ export default {
       this.showDescription = true;
     },
     getDestination() {
-      let url = "https://suggesttour.herokuapp.com";
-      if (window.location.href.match(/localhost/g)) {
-        url = "https://suggesttour.herokuapp.com";
-      } else {
-        url = "https://suggesttour.herokuapp.com";
-      }
       this.$http
-        .get(`${url}/api/Destinasi/` + this.idDestination)
+        .get(`${this.baseUrl}/api/Destinasi/` + this.idDestination)
         .then((response) => {
           this.detailDestination = response.body.data[0];
         })
