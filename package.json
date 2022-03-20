@@ -15,7 +15,8 @@
     "vue-router": "^3.x.x",
     "vue-toast-notification": "0.6.2",
     "vuetify": "^2.6.0",
-    "vuex": "^2.5.0"
+    "vuex": "^2.5.0",
+    "workbox": "0.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
