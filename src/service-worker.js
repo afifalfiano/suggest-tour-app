@@ -1,6 +1,12 @@
 // eslint-disable-next-line no-undef
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
-import { precacheAndRoute } from 'workbox-precaching';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response/CacheableResponsePlugin';
+import { CacheFirst } from 'workbox-strategies/CacheFirst';
+import { createHandlerForURL } from 'workbox-precaching/createHandlerForURL';
+import { ExpirationPlugin } from 'workbox-expiration/ExpirationPlugin';
+import { NavigationRoute } from 'workbox-routing/NavigationRoute';
+import { precacheAndRoute } from 'workbox-precaching/precacheAndRoute';
+import { registerRoute } from 'workbox-routing/registerRoute';
 precacheAndRoute(self.__WB_MANIFEST);
 
 // eslint-disable-next-line no-undef
@@ -59,3 +65,9 @@ workbox.strategies.staleWhileRevalidate({
     cacheName: 'dataApplication',
   })
 );
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
