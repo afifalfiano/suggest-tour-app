@@ -17,7 +17,7 @@
             class="d-flex-row align-center justify-center"
           >
             <div class="py-20 px-10">
-              <h1 class="text-center pb-5">Tambah Review</h1>
+              <h1 class="text-center pb-5 dispay-1">Tambah Review</h1>
               <v-form
                 ref="form"
                 v-model="valid"
