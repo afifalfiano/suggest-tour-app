@@ -16,7 +16,12 @@
     "vue-toast-notification": "0.6.2",
     "vuetify": "^2.6.0",
     "vuex": "^2.5.0",
-    "workbox": "0.0.0"
+    "workbox": "0.0.0",
+    "workbox-cacheable-response": "^6.5.1",
+    "workbox-expiration": "^6.5.1",
+    "workbox-precaching": "^6.5.1",
+    "workbox-routing": "^6.5.1",
+    "workbox-strategies": "^6.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
