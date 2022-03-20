@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-undef
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 import { precacheAndRoute } from 'workbox-precaching';
 precacheAndRoute(self.__WB_MANIFEST);
 
