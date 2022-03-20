@@ -7,7 +7,7 @@
                 class=""
                 @click="addReview"
               >
-                Add review
+                Tambah review
               </v-btn>
               </div>
           <div v-for="review in dataReview" :key="review.id">
@@ -141,7 +141,7 @@ export default {
         this.$http.delete(`${url}/api/Review/${id}`).then(response => {
           if (response.ok) {
             this.$toast.open({
-                message: 'Success Delete Review',
+                message: 'Berhasil menghapus review',
                 type: 'success',
                 position: 'top-right',
             });

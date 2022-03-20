@@ -23,7 +23,7 @@
       <div class="d-flex-row justify-center align-center text-center pb-4">
       <v-list-item-content>
         <div class="text-overline mb-4">
-          Profile
+          Profil
         </div>
         
         <v-list-item-title class="text-h5 mb-1">

@@ -9,7 +9,7 @@
             <v-text-field
             outlined
             v-model="search"
-            label="Find a place"
+            label="Cari tempat wisata"
             prepend-inner-icon="mdi-search-web"
           ></v-text-field>
           </v-col>

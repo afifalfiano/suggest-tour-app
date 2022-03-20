@@ -22,7 +22,7 @@
             <p v-bind:class="{'active': showDescription}" style="font-size: 18px">Deskripsi</p>
           </v-col>
           <v-col cols="6" class="d-flex justify-start" @click="onReview" style="cursor: pointer">
-            <p v-bind:class="{'active': showReview}" style="font-size: 18px">Review</p>
+            <p v-bind:class="{'active': showReview}" style="font-size: 18px">Ulasan</p>
           </v-col>
         </v-row>
 

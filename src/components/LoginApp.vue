@@ -3,7 +3,7 @@
         <v-row align="center">
             <v-col cols="12" align-self="center" class="d-flex-row align-center justify-center">
                 <div class="py-20 px-10">
-                <h1 class="text-center">Log In</h1>
+                <h1 class="text-center">Masuk</h1>
                 <v-form
                     ref="form"
                     v-model="valid"
@@ -24,7 +24,7 @@
                     :rules="passwordRules"
                     :type="showPassword ? 'text' : 'password'"
                     name="input-10-1"
-                    label="Normal with hint text"
+                    label="Password"
                     hint="At least 8 characters"
                     counter
                     @click:append="showPassword = !showPassword"
@@ -38,14 +38,14 @@
                     @click="submit"
                     @keypress="submit"
                     >
-                    Log In
+                    Masuk
                     </v-btn>
                     <v-btn
                     color="warning"
                     class="mr-4"
                     @click="back"
                     >
-                    Back
+                    Kembali
                     </v-btn>
                     </div>
                 </v-form>
@@ -93,7 +93,7 @@ export default {
            .then(response => {
              if(response.ok) {
                   this.$toast.open({
-                    message: 'Success Login',
+                    message: 'Berhasil masuk',
                     type: 'success',
                     position: 'top-right',
                 });
