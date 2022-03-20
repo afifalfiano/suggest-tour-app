@@ -32,14 +32,14 @@
               class="pt-2"
             >
               <v-rating
-                :value="5"
+                :value="detailDestination.totalReview"
                 color="amber"
                 dense
                 half-increments
                 readonly
                 size="14"
               ></v-rating>
-              <small>(5)</small>
+              <small>({{detailDestination.totalReview}})</small>
             </div>
           </v-col>
         </v-row>
@@ -155,6 +155,11 @@ export default {
         .get(`${this.baseUrl}/api/Destinasi/` + this.idDestination)
         .then((response) => {
           this.detailDestination = response.body.data[0];
+          let totalRating = 0;
+          response.body.data[0].review.forEach(item => {
+              totalRating += +item.rating; 
+          });
+          this.detailDestination.totalReview = totalRating / response.body.data[0].review.length;
         })
         .catch((error) => {
             this.$toast.open({
