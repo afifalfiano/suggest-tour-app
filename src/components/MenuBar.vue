@@ -43,6 +43,34 @@ export default {
   methods: {
     logout() {
       this.$emit("logout", true);
+          let url = "https://suggesttour.herokuapp.com";
+          if (window.location.href.match(/localhost/g)) {
+            url = "https://suggesttour.herokuapp.com";
+          } else {
+            url = "https://suggesttour.herokuapp.com";
+          }
+      try {
+          const payload = {
+            token: null
+          };
+          this.$http.put(url + "/api/User/logout", payload).then(response => {
+            if (response.ok) {
+                this.$toast.open({
+                  message: "Berhasil keluar",
+                  type: "success",
+                  position: "top-right",
+                });
+              setTimeout(() => {
+                localStorage.removeItem("user");
+                this.$router.push("/login");
+              }, 1000);
+            }
+          }).catch(err => {
+            throw new Error(err);
+          })
+      } catch(err) {
+        throw new Error(err);
+      }
     },
     onHome() {
       this.$router.push("/home");

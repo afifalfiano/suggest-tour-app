@@ -109,7 +109,6 @@ export default {
             delete response.body.data[0].review;
             this.dataUser = response.body.data[0];
             localStorage.setItem("user", JSON.stringify(this.dataUser));
-            console.log(response.body);
           })
           .catch((error) => {
             throw new Error(error);

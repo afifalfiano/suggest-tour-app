@@ -120,7 +120,7 @@ export default {
               localStorage.setItem("user", JSON.stringify(response.body));
 
               setTimeout(() => {
-                this.$refs.form.reset();
+                // this.$refs.form.reset();
                 this.$router.push("/home");
               }, 2000);
             }

@@ -16,7 +16,7 @@ const AddReview = () => import('./components/UpdateAccount.vue');
 export const authGuard = (to, from, next) => {
     const user = localStorage.getItem('user');
     if (user === null || user === undefined) {
-        next({ path: '/' })
+        next({ path: '/login' })
     } else {
         next()
     }
@@ -25,7 +25,7 @@ export default [
     {
         path: '/',
         component: LoginApp,
-        name: 'Login'
+        name: 'Login',
     },
     {
         path: '/login',

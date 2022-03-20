@@ -203,7 +203,6 @@ export default {
             .get(`${url}/api/Review/${pathParam[3]}`)
             .then((response) => {
               if (response.ok) {
-                console.log(response, "cek");
                 this.review = response.body.data[0].review;
                 this.rating = parseInt(response.body.data[0].rating);
               }
