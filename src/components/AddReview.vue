@@ -99,36 +99,71 @@ export default {
           rating: this.rating,
           review: this.review,
         };
-        try {
-        let url = 'https://suggesttour.herokuapp.com';
-        if(window.location.href.match(/localhost/g)) {
-          url = 'https://suggesttour.herokuapp.com';
-        } else {
-          url = 'https://suggesttour.herokuapp.com';
-        }
-           this.$http.post(`${url}/api/Review`, data)
-           .then(response => {
-             if(response.ok) {
-                  this.$toast.open({
-                    message: 'Berhasil menambahkan review',
-                    type: 'success',
-                    position: 'top-right',
-                });
-                
-                setTimeout(() => {
-                  this.$refs.form.reset();
-                  this.$router.push('/home/detail/' + this.$route.query.id_destination);
-                }, 2000);
-             }
-           })
-        } catch(error){
-            this.$toast.open({
-                message: 'Something wrong!',
-                type: 'error',
-                position: 'top-right',
-            });
-          throw new Error(error);
-        }
+
+                    const pathParam = this.$route.path.split('/');
+            if (pathParam[3] === undefined) {
+                try {
+                let url = 'https://suggesttour.herokuapp.com';
+                if(window.location.href.match(/localhost/g)) {
+                url = 'https://suggesttour.herokuapp.com';
+                } else {
+                url = 'https://suggesttour.herokuapp.com';
+                }
+                this.$http.post(`${url}/api/Review`, data)
+                .then(response => {
+                    if(response.ok) {
+                        this.$toast.open({
+                            message: 'Berhasil menambahkan review',
+                            type: 'success',
+                            position: 'top-right',
+                        });
+                        
+                        setTimeout(() => {
+                        this.$refs.form.reset();
+                        this.$router.push('/home/detail/' + this.$route.query.id_destination);
+                        }, 2000);
+                    }
+                })
+                } catch(error){
+                    this.$toast.open({
+                        message: 'Something wrong!',
+                        type: 'error',
+                        position: 'top-right',
+                    });
+                throw new Error(error);
+                }
+                } else {
+                    try {
+                    let url = 'https://suggesttour.herokuapp.com';
+                    if(window.location.href.match(/localhost/g)) {
+                    url = 'https://suggesttour.herokuapp.com';
+                    } else {
+                    url = 'https://suggesttour.herokuapp.com';
+                    }
+                    this.$http.put(`${url}/api/Review/${pathParam[3]}`, data)
+                    .then(response => {
+                        if(response.ok) {
+                            this.$toast.open({
+                                message: 'Berhasil mengubah review',
+                                type: 'success',
+                                position: 'top-right',
+                            });
+                            
+                            setTimeout(() => {
+                            this.$refs.form.reset();
+                            this.$router.push('/home/detail/' + this.$route.query.id_destination);
+                            }, 2000);
+                        }
+                    })
+                    } catch(error){
+                        this.$toast.open({
+                            message: 'Something wrong!',
+                            type: 'error',
+                            position: 'top-right',
+                        });
+                    throw new Error(error);
+                    }
+                }
         }
 
         },
