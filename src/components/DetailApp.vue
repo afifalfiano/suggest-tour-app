@@ -45,7 +45,7 @@
 
         <v-row id="review" v-if="showReview">
           <v-col cols="12">
-            <review-destination :idDestination="idDestination"></review-destination>
+            <review-destination :idDestination="idDestination" :review="detailDestination.review"></review-destination>
             </v-col>
         </v-row>
     </v-container>

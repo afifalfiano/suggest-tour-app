@@ -56,47 +56,24 @@ export default {
         type: String,
         required: true,
       },
+      review: {
+        type: Array,
+        required: true,
+      },
     },
     data() {
         return {
-          dataReview : [
-            {
-              id: 1,
-              name: 'B. Pamungkas',
-              review: 'Tempatnya bagus sih, mantap',
-              rating: 4.5,
+          dataReview: this.review.map(item => {
+            return {
+              id: item.id,
+              name: item.user.name,
               image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
-              date: new Date().toLocaleDateString()
-            },
-            {
-              id: 2,
-              name: 'Putra',
-              review: 'Tempatnya bagus sih, mantap',
-              rating: 4.5,
-              image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
-              date: new Date().toLocaleDateString()
-
-            },
-            {
-              id: 3,
-              name: 'Putri',
-              review: 'Tempatnya bagus sih, mantap',
-              rating: 4.5,
-              image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
-              date: new Date().toLocaleDateString()
-
-            },
-            {
-              id: 4,
-              name: 'Putraa',
-              review: 'Tempatnya bagus sih, mantap',
-              rating: 4.5,
-              image: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
-              date: new Date().toLocaleDateString()
-
-            },
-          ],
-          currentUser: false
+              rating: item.rating,
+              review: item.review,
+              date: new Date(item.updated_at).toLocaleDateString(),
+              user_id: item.user.id,
+            }
+          }),
         }
     },
     methods: {
@@ -106,24 +83,25 @@ export default {
         onUpdateReview(id) {
           this.$router.push({path: '/home/review/' + id, query: {id_destination: this.idDestination}});
         },
-        getReview() {
-        let url = 'https://suggesttour.herokuapp.com';
-        if(window.location.href.match(/localhost/g)) {
-          url = 'https://suggesttour.herokuapp.com';
-        } else {
-          url = 'https://suggesttour.herokuapp.com';
-        }
-        this.$http.get(`${url}/api/Review`).then(response => {
-          this.detailDestination = response.body;
-        }).catch(error => {
-          throw new Error(error);
-        })
-      },
+      //   getReview() {
+      //   let url = 'https://suggesttour.herokuapp.com';
+      //   const path = this.$route.params.id;
+      //   if(window.location.href.match(/localhost/g)) {
+      //     url = 'https://suggesttour.herokuapp.com';
+      //   } else {
+      //     url = 'https://suggesttour.herokuapp.com';
+      //   }
+      //   this.$http.get(`${url}/api/Review/${path}`).then(response => {
+      //     this.detailDestination = response.body;
+      //   }).catch(error => {
+      //     throw new Error(error);
+      //   })
+      // },
       checkUserLogin() {
         const user = localStorage.getItem('user');
         const data = JSON.parse(user) || null;
         this.dataReview = this.dataReview.map(item => {
-          if (data.id === item.id) {
+          if (data.id === item.user_id) {
           item.currentUser = true;
           }  else {
           item.currentUser = false;
@@ -145,7 +123,9 @@ export default {
                 type: 'success',
                 position: 'top-right',
             });
-            this.getReview();
+            this.dataReview = this.dataReview.filter(item => {
+              return item.id !== id;
+            });
           }
         }).catch(error => {
               this.$toast.open({
@@ -159,7 +139,6 @@ export default {
       }
     },
     created() {
-      this.getReview();
       this.checkUserLogin();
     }
 }

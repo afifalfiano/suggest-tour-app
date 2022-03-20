@@ -65,7 +65,7 @@
               </v-main>
 
 
-      <menu-bar/>
+      <menu-bar @logout="logout" :value="value"/>
   </v-app>
 </template>
 
@@ -82,22 +82,34 @@ export default {
     data() {
         return {
             valid: true,
+            value: 0,
             review: '',
             reviewRules: [
                 v => !!v || 'Review is required',
             ],
-            rating: 0,
+            rating: 5,
             ratingRules: [
                 v => !!v || 'Rating is required',
             ],
         }
     },
     methods: {
+        logout() {
+        const user = localStorage.getItem('user');
+        if(user !== null) {
+          localStorage.removeItem('user');
+          this.$router.push('/login');
+        } else {
+          this.$router.push('/');
+        }
+        },
         submit() {
         if (this.valid) {
           const data = {
           rating: this.rating,
           review: this.review,
+          user_id: JSON.parse(localStorage.getItem('user')).id,
+          destinasi_id: +this.$route.query.id_destination
         };
 
                     const pathParam = this.$route.path.split('/');
@@ -183,8 +195,9 @@ export default {
                 this.$http.get(`${url}/api/Review/${pathParam[3]}`)
                 .then(response => {
                     if(response.ok) {
-                        this.review = response.body.review;
-                        this.rating = response.body.rating;
+                        console.log(response, 'cek');
+                        this.review = response.body.data.review;
+                        this.rating = parseInt(response.body.data.rating);
                     }
                 })
             } catch(error) {
