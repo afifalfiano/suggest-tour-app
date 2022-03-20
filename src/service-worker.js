@@ -12,7 +12,7 @@ import { ExpirationPlugin } from 'workbox-expiration/ExpirationPlugin';
 import { NavigationRoute } from 'workbox-routing/NavigationRoute';
 // eslint-disable-next-line no-unused-vars
 import { registerRoute } from 'workbox-routing/registerRoute';
-import { precacheAndRoute } from 'workbox-';
+import { precacheAndRoute } from 'workbox-precaching';
 precacheAndRoute(self.__WB_MANIFEST);
 
 // eslint-disable-next-line no-undef
@@ -68,7 +68,7 @@ workbox.routing.registerRoute(
   /^https:\/\/suggesttour\.herokuapp\.com\/api/,
 // eslint-disable-next-line no-undef
 workbox.strategies.staleWhileRevalidate({
-    cacheName: 'dataApplication',
+    cacheName: 'SuggestTourApp',
   })
 );
 
