@@ -155,7 +155,7 @@ export default {
               id: item.id,
               name: item.nama_destinasi,
               rating: 5,
-              image: "https://media.timeout.com/images/105240189/image.jpg",
+              image: item.image_url,
               description: item.deskripsi,
               totalReview: 10,
             };

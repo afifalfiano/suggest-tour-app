@@ -11,7 +11,7 @@
         hide-delimiters
         v-bind:show-arrows="arrow"
       >
-        <v-carousel-item src="https://media.timeout.com/images/105240189/image.jpg"></v-carousel-item>
+        <v-carousel-item :src="detailDestination.image_url"></v-carousel-item>
       </v-carousel>
       <v-container
         style="width: 100%; transform: translateY(-100px); height: 100%"
