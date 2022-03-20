@@ -204,8 +204,8 @@ export default {
             .then((response) => {
               if (response.ok) {
                 console.log(response, "cek");
-                this.review = response.body.data.review;
-                this.rating = parseInt(response.body.data.rating);
+                this.review = response.body.data[0].review;
+                this.rating = parseInt(response.body.data[0].rating);
               }
             });
         } catch (error) {

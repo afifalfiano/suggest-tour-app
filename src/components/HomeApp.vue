@@ -115,44 +115,7 @@ export default {
       value: 0,
       search: "",
 
-      dataDestination: [
-        {
-          id: 1,
-          name: "Bali",
-          rating: 4.5,
-          image: "https://media.timeout.com/images/105240189/image.jpg",
-          description:
-            "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-          totalReview: 100,
-        },
-        {
-          id: 2,
-          name: "Sleman",
-          rating: 4.5,
-          image: "https://media.timeout.com/images/105240189/image.jpg",
-          description:
-            "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-          totalReview: 100,
-        },
-        {
-          id: 3,
-          name: "Jogja",
-          rating: 4.5,
-          image: "https://media.timeout.com/images/105240189/image.jpg",
-          description:
-            "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-          totalReview: 100,
-        },
-        {
-          id: 4,
-          name: "Bantul",
-          rating: 4.5,
-          image: "https://media.timeout.com/images/105240189/image.jpg",
-          description:
-            "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat",
-          totalReview: 100,
-        },
-      ],
+      dataDestination: [],
     };
   },
   methods: {
