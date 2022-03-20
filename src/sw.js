@@ -1,4 +1,6 @@
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
+import workbox from "workbox";
+import { precacheAndRoute } from 'workbox-precaching';
+precacheAndRoute(self.__WB_MANIFEST);
 
 if (workbox) {
   console.log("Workbox berhasil dimuat");
@@ -16,19 +18,6 @@ workbox.routing.registerRoute(
   workbox.strategies.cacheFirst()
 );
 
-
-workbox.routing.registerRoute(
-  new RegExp('/pages/'),
-  workbox.strategies.staleWhileRevalidate({
-    cacheName: 'pages',
-    plugins: [
-      new workbox.expiration.Plugin({
-        maxEntries: 60,
-        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 hari
-      }),
-    ],
-  })
-)
 
 workbox.routing.registerRoute(
   /^https:\/\/fonts\.googleapis\.com/,
