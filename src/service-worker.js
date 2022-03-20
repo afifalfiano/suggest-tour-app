@@ -1,17 +1,5 @@
 // eslint-disable-next-line no-undef
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
-// // eslint-disable-next-line no-unused-vars
-// import { CacheableResponsePlugin } from 'workbox-cacheable-response/CacheableResponsePlugin';
-// // eslint-disable-next-line no-unused-vars
-// import { CacheFirst } from 'workbox-strategies/CacheFirst';
-// // eslint-disable-next-line no-unused-vars
-// import { createHandlerForURL } from 'workbox-precaching/createHandlerForURL';
-// // eslint-disable-next-line no-unused-vars
-// import { ExpirationPlugin } from 'workbox-expiration/ExpirationPlugin';
-// // eslint-disable-next-line no-unused-vars
-// import { NavigationRoute } from 'workbox-routing/NavigationRoute';
-// // eslint-disable-next-line no-unused-vars
-// import { registerRoute } from 'workbox-routing/registerRoute';
 import { precacheAndRoute } from 'workbox-precaching';
 precacheAndRoute(self.__WB_MANIFEST);
 

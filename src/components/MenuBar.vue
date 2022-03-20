@@ -60,7 +60,7 @@ export default {
                 });
               setTimeout(() => {
                 localStorage.removeItem("user");
-                this.$router.push("/login");
+                this.$router.push("/");
               }, 1000);
             }
           }).catch(err => {
