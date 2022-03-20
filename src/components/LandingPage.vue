@@ -22,18 +22,6 @@ export default {
         }
     },
     methods: {
-        onSubmit() {
-            console.log('submit');
-            this.$http.post('https://jsonplaceholder.typicode.com/posts', {
-                title: this.title,
-                content: this.content,
-                id: 1
-            }).then(response => {
-                console.log(response, 'res')
-            }).catch(err => {
-                console.log(err, 'err')
-            })
-        }
     }
 }
 </script>

@@ -91,7 +91,6 @@ export default {
         }
            this.$http.post(`${url}/api/login`, data)
            .then(response => {
-             console.log(response);
              if(response.ok) {
                   this.$toast.open({
                     message: 'Success Login',

@@ -104,7 +104,6 @@ export default {
         this.$http.get(`${url}/api/Review`).then(response => {
           this.detailDestination = response.body;
         }).catch(error => {
-          console.log(error);
           throw new Error(error);
         })
       }

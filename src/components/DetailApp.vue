@@ -102,7 +102,6 @@ export default {
         this.$http.get(`${url}/api/Destinasi/` + this.idDestination).then(response => {
           this.detailDestination = response.body.data[0];
         }).catch(error => {
-          console.log(error);
           throw new Error(error);
         })
       }
