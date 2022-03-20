@@ -57,6 +57,15 @@ export default [
         
     },
     {
+        path: '/home/review/:id',
+        component: AddReview,
+        beforeEnter: ((to, from, next) => {
+            authGuard(to, from, next);
+           }),
+           name: 'Update Review'
+        
+    },
+    {
         path: '/account',
         component: AccountApp,
         beforeEnter: ((to, from, next) => {

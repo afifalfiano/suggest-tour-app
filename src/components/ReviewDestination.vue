@@ -29,7 +29,11 @@
                 size="14"
               ></v-rating>
               <small style="color: #616161;">({{review.rating}})</small>
-                </div>
+                    <div v-if="review.currentUser" style="cursor: pointer" @click="onUpdateReview(review.id)"> 
+                    <v-icon right>
+                    mdi-pencil
+                      </v-icon></div>
+                    </div>
                 </div>
                 <p>{{review.review}} <small style="color: #616161;">({{review.date}})</small></p>
               </v-col>
@@ -87,12 +91,16 @@ export default {
               date: new Date().toLocaleDateString()
 
             },
-          ]
+          ],
+          currentUser: false
         }
     },
     methods: {
         addReview() {
           this.$router.push({path: '/home/review', query: {id_destination: this.idDestination}});
+        },
+        onUpdateReview(id) {
+          this.$router.push({path: '/home/review/' + id, query: {id_destination: this.idDestination}});
         },
         getReview() {
         let url = 'https://suggesttour.herokuapp.com';
@@ -106,10 +114,23 @@ export default {
         }).catch(error => {
           throw new Error(error);
         })
+      },
+      checkUserLogin() {
+        const user = localStorage.getItem('user');
+        const data = JSON.parse(user) || null;
+        this.dataReview = this.dataReview.map(item => {
+          if (data.id === item.id) {
+          item.currentUser = true;
+          }  else {
+          item.currentUser = false;
+          }
+          return item;
+        })
       }
     },
     created() {
       this.getReview();
+      this.checkUserLogin();
     }
 }
 </script>

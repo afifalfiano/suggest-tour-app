@@ -130,7 +130,37 @@ export default {
         back() {
             this.$router.push('/home/detail/' + this.$route.query.id_destination);
         },
+        doGetCurrentReview() {
+            const pathParam = this.$route.path.split('/');
+            if (pathParam[3] !== undefined) {
+            try {
+                let url = 'https://suggesttour.herokuapp.com';
+                if(window.location.href.match(/localhost/g)) {
+                  url = 'https://suggesttour.herokuapp.com';
+                } else {
+                  url = 'https://suggesttour.herokuapp.com';
+                }
+                this.$http.get(`${url}/api/Review/${pathParam[3]}`)
+                .then(response => {
+                    if(response.ok) {
+                        this.review = response.body.review;
+                        this.rating = response.body.rating;
+                    }
+                })
+            } catch(error) {
+                this.$toast.open({
+                    message: 'Something wrong!',
+                    type: 'error',
+                    position: 'top-right',
+                });
+                throw new Error(error);
+            }   
+            }
+        }
     },
+    created() {
+        this.doGetCurrentReview();
+    }
 }
 </script>
 
