@@ -1,9 +1,9 @@
 <template>
     <v-container style="max-width: 600px; margin: auto" fluid fill-height>
-        <v-row align="center">
+        <v-row align="center pt-16">
             <v-col cols="12" align-self="center" class="d-flex-row align-center justify-center">
                 <div class="py-20 px-10">
-                <h1 class="text-center">Daftar</h1>
+                <h1 class="text-center display-1 pb-10">Registrasi Akun</h1>
                 <v-form
                     ref="form"
                     v-model="valid"
@@ -14,6 +14,7 @@
                     v-model="name"
                     :counter="10"
                     :rules="nameRules"
+                    filled
                     label="Name"
                     required
                     ></v-text-field>
@@ -21,6 +22,7 @@
                     <v-text-field
                     v-model="email"
                     :rules="emailRules"
+                    filled
                     label="E-mail"
                     required
                     ></v-text-field>
@@ -29,6 +31,7 @@
                     v-model="password"
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                     :rules="passwordRules"
+                    filled
                     :type="showPassword ? 'text' : 'password'"
                     name="input-10-1"
                     label="Password"
@@ -45,18 +48,23 @@
                     @click="submit"
                     @keypress="submit"
                     >
-                    Daftar
+                    Registrasi
                     </v-btn>
-                    <v-btn
+                    <!-- <v-btn
                     color="warning"
                     class="mr-4"
                     @click="back"
                     >
                     Kembali
-                    </v-btn>
+                    </v-btn> -->
                     </div>
                 </v-form>
                 </div>
+            </v-col>
+        </v-row>
+                <v-row>
+            <v-col cols="12">
+        <p class="text-center">Sudah punya akun? <router-link to="/login" class="link">Masuk disini</router-link></p>
             </v-col>
         </v-row>
     </v-container>    

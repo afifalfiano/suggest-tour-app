@@ -1,9 +1,9 @@
 <template>
     <v-container style="max-width: 600px; margin: auto" fluid fill-height>
-        <v-row align="center">
+        <v-row align="center" class="pt-16">
             <v-col cols="12" align-self="center" class="d-flex-row align-center justify-center">
                 <div class="py-20 px-10">
-                <h1 class="text-center">Masuk</h1>
+                <h1 class="text-center pb-10 display-1">Masuk Akun Anda</h1>
                 <v-form
                     ref="form"
                     v-model="valid"
@@ -13,12 +13,14 @@
 
                     <v-text-field
                     v-model="email"
+                    filled
                     :rules="emailRules"
                     label="E-mail"
                     required
                     ></v-text-field>
 
                     <v-text-field
+                    filled
                     v-model="password"
                     :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
                     :rules="passwordRules"
@@ -40,17 +42,21 @@
                     >
                     Masuk
                     </v-btn>
-                    <v-btn
+                    <!-- <v-btn
                     color="warning"
                     class="mr-4"
                     @click="back"
                     >
                     Kembali
-                    </v-btn>
+                    </v-btn> -->
                     </div>
                 </v-form>
-                </div>
-                
+                </div>                
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="12">
+        <p class="text-center">Belum punya akun? <router-link to="/signup" class="link">Daftar disini</router-link></p>
             </v-col>
         </v-row>
     </v-container>    
@@ -124,5 +130,8 @@ export default {
 </script>
 
 <style scoped>
-
+    .link {
+        color: green;
+        text-decoration: none;
+    }
 </style>

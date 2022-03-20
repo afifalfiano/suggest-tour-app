@@ -1,4 +1,4 @@
-import LandingPage from './components/LandingPage.vue';
+// import LandingPage from './components/LandingPage.vue';
 import LoginApp from './components/LoginApp.vue';
 import SignUp from './components/SignUp.vue';
 import HomeApp from './components/HomeApp.vue';
@@ -17,8 +17,8 @@ export const authGuard = (to, from, next) => {
 export default [
     {
         path: '/',
-        component: LandingPage,
-        name: 'Landing Page'
+        component: LoginApp,
+        name: 'Login'
     },
     {
         path: '/login',
