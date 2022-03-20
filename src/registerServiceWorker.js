@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
     registered () {
       // console.log('Service worker has been registered.')
       return navigator.serviceWorker
-      .register("./sw.js")
+      .register("./service-worker.js")
       .then((registration) => {
         console.log("Registrasi service worker berhasil.");
         return registration;
