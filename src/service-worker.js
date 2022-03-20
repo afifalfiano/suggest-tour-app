@@ -1,43 +1,60 @@
-import workbox from 'workbox'
-import { precacheAndRoute } from 'workbox-precaching';
-precacheAndRoute(self.__WB_MANIFEST);
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
 
-//This is how you can use the network first strategy for files ending with .js
-workbox.routing.registerRoute(
-  /.*\.js/,
-  workbox.strategies.networkFirst()
-)
+if (workbox) {
+  console.log("Workbox berhasil dimuat");
+} else {
+  console.log("Workbox gagal dimuat");
+}
 
-// Use cache but update cache files in the background ASAP
+workbox.precaching.precacheAndRoute([
+  {url: '/index.html', revision: '1'},
+  {url: '/manifest.json', revision: '1'},
+]);
+
 workbox.routing.registerRoute(
-  /.*\.css/,
+  /\.(?:png|gif|jpg|jpeg|svg|ico)$/,
+  workbox.strategies.cacheFirst()
+);
+
+
+workbox.routing.registerRoute(
+  new RegExp('/pages/'),
   workbox.strategies.staleWhileRevalidate({
-    cacheName: 'css-cache'
-  })
-)
-
-//Cache first, but defining duration and maximum files
-workbox.routing.registerRoute(
-  /.*\.(?:png|jpg|jpeg|svg|gif)/,
-  workbox.strategies.cacheFirst({
-    cacheName: 'image-cache',
+    cacheName: 'pages',
     plugins: [
       new workbox.expiration.Plugin({
-        maxEntries: 20,
-        maxAgeSeconds: 7 * 24 * 60 * 60
-      })
-    ]
+        maxEntries: 60,
+        maxAgeSeconds: 30 * 24 * 60 * 60, // 30 hari
+      }),
+    ],
   })
 )
 
 workbox.routing.registerRoute(
-  new RegExp('https://fonts.(?:googleapis|gstatic).com/(.*)'),
-  workbox.strategies.cacheFirst({
-    cacheName: 'googleapis',
-    plugins: [
-      new workbox.expiration.Plugin({
-        maxEntries: 30
-      })
-    ]
+  /^https:\/\/fonts\.googleapis\.com/,
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'google-fonts-stylesheets',
   })
-)
+);
+ 
+workbox.routing.registerRoute(
+  /^https:\/\/fonts\.gstatic\.com/,
+  workbox.strategies.cacheFirst({
+    cacheName: 'google-fonts-webfonts',
+    plugins: [
+      new workbox.cacheableResponse.Plugin({
+        statuses: [0, 200],
+      }),
+      new workbox.expiration.Plugin({
+        maxAgeSeconds: 60 * 60 * 24 * 365,
+        maxEntries: 30,
+      }),
+    ],
+  })
+);
+workbox.routing.registerRoute(
+  /^https:\/\/suggesttour\.herokuapp\.com\/api/,
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'dataApplication',
+  })
+);

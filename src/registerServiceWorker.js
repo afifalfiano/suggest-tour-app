@@ -11,7 +11,16 @@ if (process.env.NODE_ENV === 'production') {
       )
     },
     registered () {
-      console.log('Service worker has been registered.')
+      // console.log('Service worker has been registered.')
+      return navigator.serviceWorker
+      .register("./service-worker.js")
+      .then((registration) => {
+        console.log("Registrasi service worker berhasil.");
+        return registration;
+      })
+      .catch((err) => {
+        console.error("Registrasi service worker gagal.", err);
+      });
     },
     cached () {
       console.log('Content has been cached for offline use.')
