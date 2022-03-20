@@ -1,8 +1,5 @@
-const { defineConfig } = require('@vue/cli-service')
-module.exports = defineConfig({
-  transpileDependencies: [
-    'vuetify'
-  ],
+// const { defineConfig } = require('@vue/cli-service')
+module.exports = {
   publicPath: '',
   pwa: {
     themeColor: "#42b983",
@@ -17,4 +14,4 @@ module.exports = defineConfig({
             swDest: "service-worker.js"
         }
   }
-})
+}
