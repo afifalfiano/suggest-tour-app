@@ -2,10 +2,6 @@ import workbox from 'workbox'
 import { precacheAndRoute } from 'workbox-precaching';
 precacheAndRoute(self.__WB_MANIFEST);
 
-
-//Only if you use google analytics and wants to send the offline views
-workbox.googleAnalytics.initialize()
-
 //This is how you can use the network first strategy for files ending with .js
 workbox.routing.registerRoute(
   /.*\.js/,
