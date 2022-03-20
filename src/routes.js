@@ -4,6 +4,7 @@ import SignUp from './components/SignUp.vue';
 import HomeApp from './components/HomeApp.vue';
 import DetailApp from './components/DetailApp.vue';
 import AccountApp from './components/AccountApp.vue'
+import UpdateAccount from './components/UpdateAccount.vue'
 import AddReview from './components/AddReview.vue'
 
 export const authGuard = (to, from, next) => {
@@ -72,5 +73,13 @@ export default [
             authGuard(to, from, next);
            }),
         name: 'Account'
+    },
+    {
+        path: '/account/update',
+        component: UpdateAccount,
+        beforeEnter: ((to, from, next) => {
+            authGuard(to, from, next);
+           }),
+        name: 'Update Account'
     }
 ]

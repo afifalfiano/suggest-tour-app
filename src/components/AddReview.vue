@@ -6,9 +6,10 @@
         <v-row align="center">
             <v-col cols="12" align-self="center" class="d-flex-row align-center justify-center">
                 <div class="py-20 px-10">
-                <h1 class="text-center">Tambah Review</h1>
+                <h1 class="text-center pb-10">Tambah Review</h1>
                 <v-form
                     ref="form"
+                    
                     v-model="valid"
                     v-on:submi.prevent="submit"
                     lazy-validation
@@ -20,6 +21,7 @@
                     max="5"
                     min="1"
                     step="0.1"
+                    filled
                     :rules="ratingRules"
                     label="Rating"
                     required
@@ -27,6 +29,7 @@
 
                     <v-text-field
                     v-model="review"
+                    filled
                     :rules="reviewRules"
                     label="Review"
                     required
@@ -34,6 +37,15 @@
 
                     
                     <div class="d-flex justify-center align-center pt-5">
+
+                                            <v-btn
+                    color="warning"
+                    class="mr-4"
+                    outlined
+                    @click="back"
+                    >
+                    Kembali
+                    </v-btn>
                     <v-btn
                     :disabled="!valid"
                     color="success"
@@ -42,13 +54,6 @@
                     @keypress="submit"
                     >
                     Simpan
-                    </v-btn>
-                    <v-btn
-                    color="warning"
-                    class="mr-4"
-                    @click="back"
-                    >
-                    Kembali
                     </v-btn>
                     </div>
                 </v-form>

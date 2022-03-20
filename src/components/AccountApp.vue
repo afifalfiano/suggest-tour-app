@@ -41,6 +41,7 @@
     <v-btn 
       tile
       color="primary"
+      @click="onUpdateProfile"
     >
       <v-icon left>
         mdi-pencil
@@ -96,6 +97,9 @@ data() {
           this.$router.push('/');
         }
       },
+      onUpdateProfile() {
+        this.$router.push('/account/update');
+      }
     }
 }
 </script>
