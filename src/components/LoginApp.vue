@@ -123,7 +123,19 @@ export default {
                 // this.$refs.form.reset();
                 this.$router.push("/home");
               }, 2000);
+            } else {
+              this.$toast.open({
+                message: response.body.message,
+                type: "warning",
+                position: "top-right",
+              });
             }
+          }).catch((error) => {
+            this.$toast.open({
+              message: error.body.message,
+              type: "error",
+              position: "top-right",
+            });
           });
         } catch (error) {
           this.$toast.open({

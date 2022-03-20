@@ -206,7 +206,13 @@ export default {
                 this.review = response.body.data[0].review;
                 this.rating = parseInt(response.body.data[0].rating);
               }
+            }).catch((error) => {
+            this.$toast.open({
+              message: error.body.message,
+              type: "error",
+              position: "top-right",
             });
+          });
         } catch (error) {
           this.$toast.open({
             message: "Something wrong!",

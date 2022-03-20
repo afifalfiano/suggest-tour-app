@@ -133,6 +133,12 @@ export default {
                 this.$router.push("/login");
               }, 2000);
             }
+          }).catch((error) => {
+            this.$toast.open({
+              message: error.body.message,
+              type: "error",
+              position: "top-right",
+            });
           });
         } catch (error) {
           this.$toast.open({

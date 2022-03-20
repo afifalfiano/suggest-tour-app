@@ -111,6 +111,11 @@ export default {
             localStorage.setItem("user", JSON.stringify(this.dataUser));
           })
           .catch((error) => {
+            this.$toast.open({
+              message: error.body.message,
+              type: "error",
+              position: "top-right",
+            });
             throw new Error(error);
           });
       } catch(error) {

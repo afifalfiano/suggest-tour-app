@@ -160,6 +160,11 @@ export default {
           this.detailDestination = response.body.data[0];
         })
         .catch((error) => {
+            this.$toast.open({
+              message: error.body.message,
+              type: "error",
+              position: "top-right",
+            });
           throw new Error(error);
         });
     },

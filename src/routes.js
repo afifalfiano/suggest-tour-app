@@ -11,7 +11,7 @@ const HomeApp = () => import('./components/HomeApp.vue');
 const DetailApp = () => import('./components/DetailApp.vue');
 const AccountApp = () => import('./components/AccountApp.vue');
 const UpdateAccount = () => import('./components/UpdateAccount.vue');
-const AddReview = () => import('./components/UpdateAccount.vue');
+const AddReview = () => import('./components/AddReview.vue');
 
 export const authGuard = (to, from, next) => {
     const user = localStorage.getItem('user');
