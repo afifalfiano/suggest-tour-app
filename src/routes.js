@@ -1,11 +1,10 @@
 import LoginApp from './components/LoginApp.vue';
 import SignUp from './components/SignUp.vue';
-
-const HomeApp = () => import('./components/HomeApp.vue');
-const DetailApp = () => import('./components/DetailApp.vue');
-const AccountApp = () => import('./components/AccountApp.vue');
-const UpdateAccount = () => import('./components/UpdateAccount.vue');
-const AddReview = () => import('./components/AddReview.vue');
+import HomeApp from './components/HomeApp.vue';
+import DetailApp from './components/DetailApp.vue';
+import AccountApp from './components/AccountApp.vue';
+import UpdateAccount from './components/UpdateAccount.vue';
+import AddReview from './components/AddReview.vue';
 
 export const authGuard = (to, from, next) => {
     const user = localStorage.getItem('user');

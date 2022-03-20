@@ -24,7 +24,7 @@
           </v-col>
         </v-row>
         <v-row v-if="loading">
-          <v-col cols="12">
+          <v-col cols="12" v-for="item in dataLoding" :key="item">
             <v-skeleton-loader
           class="mx-auto"
           type="card-avatar"      
@@ -119,6 +119,7 @@ export default {
   },
   data() {
     return {
+      dataLoding: [0,1,2,4,5,6,7],
       isLoggedIn: false,
       value: 0,
       search: "",
