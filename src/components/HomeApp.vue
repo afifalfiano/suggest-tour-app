@@ -48,10 +48,10 @@
                   cols="8"
                   class="pl-1"
                 >
-                  <div class="d-flex justify-space-between align-center">
-                    <v-card-title class="d-flex justify-start">{{data.name}}</v-card-title>
+                  <div class="d-flex-row">
+                    <v-card-title class="d-flex justify-start pb-0">{{data.name}}</v-card-title>
 
-                    <div class="d-flex-row align-center justify-end">
+                    <div class="d-flex-row align-center justify-end pl-3">
                       <v-rating
                         :value="data.rating"
                         color="amber"
