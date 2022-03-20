@@ -43,6 +43,12 @@
 <script>
 export default {
     name: 'ReviewDestination',
+    props: {
+      idDestination: {
+        type: String,
+        required: true,
+      },
+    },
     data() {
         return {
           dataReview : [
@@ -86,6 +92,7 @@ export default {
     },
     methods: {
         addReview() {
+          this.$router.push({path: '/home/review', query: {id_destination: this.idDestination}});
         },
         getReview() {
         let url = 'https://suggesttour.herokuapp.com';
