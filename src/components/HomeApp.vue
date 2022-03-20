@@ -23,7 +23,15 @@
             ></v-text-field>
           </v-col>
         </v-row>
-        <v-row align="center">
+        <v-row v-if="loading">
+          <v-col cols="12">
+            <v-skeleton-loader
+          class="mx-auto"
+          type="card-avatar"      
+        ></v-skeleton-loader>
+          </v-col>
+        </v-row>
+        <v-row align="center" v-if="!loading">
           <v-col
             cols="12"
             class="pt-0"
@@ -114,7 +122,7 @@ export default {
       isLoggedIn: false,
       value: 0,
       search: "",
-
+      loading : true,
       dataDestination: [],
     };
   },
@@ -145,6 +153,7 @@ export default {
       this.$http
         .get(`${this.baseUrl}/api/Destinasi`)
         .then((response) => {
+          if (response.ok) {
           this.dataDestination = response.body.data.map((item) => {
             return {
               id: item.id,
@@ -155,6 +164,9 @@ export default {
               totalReview: 10,
             };
           });
+
+          this.loading = false;
+          }
         })
         .catch((error) => {
           this.$toast.open({

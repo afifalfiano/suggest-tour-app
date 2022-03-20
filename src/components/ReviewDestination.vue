@@ -10,6 +10,15 @@
         Tambah review
       </v-btn>
     </div>
+    <v-row v-if="loading">
+      <v-col cols="12">
+        <v-skeleton-loader
+          class="mx-auto"
+          type="list-item-avatar-three-line"
+        ></v-skeleton-loader>
+      </v-col>
+    </v-row>
+    <div v-if="!loading">
     <div
       v-for="review in dataReview"
       :key="review.id"
@@ -69,11 +78,12 @@
       </v-container>
       <hr class="mt-2 mb-2">
     </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   name: "ReviewDestination",
   props: {
@@ -87,17 +97,18 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['baseUrl'])
+    ...mapGetters(["baseUrl"]),
   },
   data() {
     return {
+      loading: true,
       dataReview: this.review.map((item) => {
         return {
           id: item.id,
           name: item.user.name,
           image:
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png",
-          rating: item.rating,
+          rating: +item.rating,
           review: item.review,
           date: new Date(item.updated_at).toLocaleDateString(),
           user_id: item.user.id,
@@ -129,6 +140,10 @@ export default {
         }
         return item;
       });
+
+      setTimeout(() => {
+        this.loading = false
+      }, 2000);
     },
     onDeleteReview(id) {
       this.$http

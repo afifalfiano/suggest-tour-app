@@ -159,7 +159,9 @@ export default {
           response.body.data[0].review.forEach(item => {
               totalRating += +item.rating; 
           });
-          this.detailDestination.totalReview = totalRating / response.body.data[0].review.length;
+          const divide = totalRating / response.body.data[0].review.length;
+          const toNumb = divide.toFixed(2);
+          this.detailDestination.totalReview = +toNumb;
         })
         .catch((error) => {
             this.$toast.open({
