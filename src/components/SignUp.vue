@@ -98,7 +98,7 @@ export default {
         if(window.location.href.match(/localhost/g)) {
           url = 'http://localhost:8000';
         } else {
-          url = 'https://suggest-app.000webhostapp.com';
+          url = 'https://suggesttour.herokuapp.com';
         }
            this.$http.post(`${url}/api/register`, data)
            .then(response => {
