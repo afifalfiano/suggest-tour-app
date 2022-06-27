@@ -25,8 +25,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Kelompok
 
-195411050 Farhan Kurnia Ragil Syahputra
-195411020 Muhammad Afif Alfiano Hermasyah
-195411087 Muhammad Ridho Sulistiawan
-195411077 Nur Ikhwan Budi Santoso
+- 195411050 Farhan Kurnia Ragil Syahputra
+- 195411020 Muhammad Afif Alfiano Hermasyah
+- 195411087 Muhammad Ridho Sulistiawan
+- 195411077 Nur Ikhwan Budi Santoso
 
